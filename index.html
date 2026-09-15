@@ -327,6 +327,36 @@
             transform: scale(0.95);
         }
 
+        /* ----------------- Input Game ID Fields ----------------- */
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        .game-input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1.5px solid #cbd5e1;
+            background: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: #0f172a;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        .game-input:focus {
+            border-color: #38bdf8;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+        }
+        .game-input::placeholder {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
         /* ----------------- 3D RGB GAME CARDS ----------------- */
         .game-grid {
             display: flex;
@@ -417,7 +447,7 @@
             transition: color 0.2s ease;
         }
 
-        /* ----------------- LIST/MENU CARDS (Digital & SMM) ----------------- */
+        /* ----------------- LIST/MENU CARDS ----------------- */
         .digital-card-wrapper {
             position: relative;
             width: 100%;
@@ -467,7 +497,7 @@
             margin-top: 2px;
         }
 
-        /* ----------------- PACKAGES GRID (សម្រាប់ហ្គេមទាំងអស់) ----------------- */
+        /* ----------------- PACKAGES GRID ----------------- */
         .packages-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -540,6 +570,10 @@
         .topup-btn:active {
             transform: scale(0.98);
         }
+        .topup-btn:disabled {
+            background: #475569;
+            cursor: not-allowed;
+        }
 
         .back-btn {
             background: #f1f5f9;
@@ -597,7 +631,7 @@
 
                 <div class="splash-timer">
                     កំពុងចូលទៅកាន់ហាងក្នុងរយៈពេល<br>
-                    <span id="countdown-timer" class="splash-countdown">20</span> វិនាទី...
+                    <span id="countdown-timer" class="splash-countdown">5</span> វិនាទី...
                 </div>
 
                 <button class="skip-btn" onclick="enterStore()">ចូលហាងឥឡូវនេះ ➔</button>
@@ -628,7 +662,6 @@
                     </div>
                 </div>
 
-                <!-- GAME MENU SECTION -->
                 <div class="section-title">
                     <span>ជ្រើសរើសហ្គេម (Select Game)</span>
                     <span class="blue-tick">✔</span>
@@ -658,12 +691,10 @@
                     </div>
                 </div>
 
-                <!-- DIGITAL ACCOUNT MENU SECTION -->
                 <div class="section-title">
                     <span>ទំនិញអាខោន Digital 🎁</span>
                     <span class="blue-tick">✔</span>
                 </div>
-
                 <div class="digital-card-wrapper" onclick="alert('សេវាកម្មទំនិញអាខោន Digital នឹងបើកដំណើរការឆាប់ៗនេះ!')">
                     <div class="digital-card">
                         <div class="digital-icon">🛍️</div>
@@ -675,12 +706,10 @@
                     </div>
                 </div>
 
-                <!-- SMM PANEL MENU SECTION -->
                 <div class="section-title">
                     <span>សេវាកម្ម SMM PANEL 🚀</span>
                     <span class="blue-tick">✔</span>
                 </div>
-
                 <div class="digital-card-wrapper" onclick="alert('សេវាកម្ម SMM PANEL នឹងបើកដំណើរការឆាប់ៗនេះ!')">
                     <div class="digital-card">
                         <div class="digital-icon">🚀</div>
@@ -691,7 +720,6 @@
                         <div style="color: #38bdf8; font-weight: 800; font-size: 16px;">➔</div>
                     </div>
                 </div>
-
             </div>
 
             <!-- ================= VIEW 2: ROBLOX STORE ================= -->
@@ -709,7 +737,7 @@
                     <span class="blue-tick">✔</span>
                 </div>
 
-                <!-- ប្រអប់សារទាក់ទង Admin -->
+                <!-- ប្រអប់សារទាក់ទង Admin (សម្រាប់តែ Roblox) -->
                 <div class="admin-contact-box">
                     <span class="admin-text">សូមទាក់ទងទៅកាន់អ្នកគ្រប់គ្រងសុវត្ដិភាពជាងនេះ :</span>
                     <a href="https://t.me/longzzsmmdigitall" target="_blank" class="tg-btn">
@@ -735,7 +763,7 @@
                 </div>
             </div>
 
-            <!-- ================= VIEW 3: FREE FIRE STORE (ថ្មី) ================= -->
+            <!-- ================= VIEW 3: FREE FIRE STORE ================= -->
             <div id="freefire-view" class="header-content hidden">
                 <div class="header-top">
                     <img src="https://img.sanishtech.com/u/bcfdd7242970dba2e78b3dca9f4f5a1a.png" alt="Logo" class="shop-logo">
@@ -750,13 +778,10 @@
                     <span class="blue-tick">✔</span>
                 </div>
 
-                <!-- ប្រអប់សារទាក់ទង Admin -->
-                <div class="admin-contact-box">
-                    <span class="admin-text">សូមទាក់ទងទៅកាន់អ្នកគ្រប់គ្រងសុវត្ដិភាពជាងនេះ :</span>
-                    <a href="https://t.me/longzzsmmdigitall" target="_blank" class="tg-btn">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-                        Contact Admin @longzzsmmdigitall
-                    </a>
+                <!-- ប្រអប់បញ្ចូល ID Game (មានតែនៅ Free Fire ប៉ុណ្ណោះ) -->
+                <div class="input-container">
+                    <input type="text" id="freefire-id-1" class="game-input" placeholder="សូមបញ្ជូល ID Game នៅទីនេះ !">
+                    <input type="text" id="freefire-id-2" class="game-input" placeholder="បញ្ជាក់ ID Game ម្ដងទៀត">
                 </div>
 
                 <div class="packages-grid">
@@ -776,7 +801,7 @@
                 <button id="back-btn" class="back-btn hidden" onclick="showHome()">⬅ ត្រឡប់ក្រោយ (Back)</button>
 
                 <div id="topup-btn-container" class="btn-wrapper hidden">
-                    <button class="topup-btn" onclick="handleActionButton()">🛒 ទិញឥឡូវនេះ (TOUP NOW)</button>
+                    <button id="main-action-btn" class="topup-btn" onclick="handleActionButton()">🛒 ទិញឥឡូវនេះ (TOUP NOW)</button>
                 </div>
 
                 <div class="footer">
@@ -792,11 +817,14 @@
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
 
+        // ------------------ Telegram Bot Setup ------------------
+        const BOT_TOKEN = '8816209068:AAGRu_OrrG3N0yyTQw-QW3bg32G926z23v4';
+        const CHAT_ID = '-1004454845081';
+
         let currentView = 'home';
         let selectedMainGame = '';
         
-        // Countdown Logic
-        let countdownValue = 20; 
+        let countdownValue = 5; 
         let countdownInterval;
 
         window.onload = function() {
@@ -837,8 +865,95 @@
                     alert('សេវាកម្ម ' + selectedMainGame + ' នឹងបើកដំណើរការឆាប់ៗនេះ!');
                 }
             } else if (currentView === 'roblox' || currentView === 'freefire') {
-                alert('សូមអរគុណ! ប្រព័ន្ធកំពុងដំណើរការ...');
+                processOrder();
             }
+        }
+
+        function processOrder() {
+            let id1 = "", id2 = "";
+            let gameNameStr = currentView === 'roblox' ? 'ROBLOX' : 'FREE FIRE';
+
+            // ឆែកមើលតែពេលនៅ Free Fire ទេទើបទាមទារ ID
+            if (currentView === 'freefire') {
+                id1 = document.getElementById('freefire-id-1').value.trim();
+                id2 = document.getElementById('freefire-id-2').value.trim();
+
+                if (!id1 || !id2) {
+                    alert('សូមបញ្ជូល ID Game ទាំងពីរប្រអប់ឱ្យបានត្រឹមត្រូវ!');
+                    return;
+                }
+                if (id1 !== id2) {
+                    alert('ID Game មិនផ្ទៀងផ្ទាត់គ្នាទេ សូមពិនិត្យម្ដងទៀត!');
+                    return;
+                }
+            } else {
+                // សម្រាប់ Roblox (ដាក់ពាក្យថា ទាក់ទងតាមឆាត)
+                id1 = "ទាក់ទងតាមឆាត";
+            }
+
+            let activePkg = document.querySelector(`#${currentView}-view .package-card.active`);
+            if (!activePkg) {
+                alert('សូមជ្រើសរើសកញ្ចប់ណាមួយសិន!');
+                return;
+            }
+            let pkgAmount = activePkg.querySelector('.package-amount').innerText;
+            let pkgPrice = activePkg.querySelector('.package-price').innerText;
+
+            let tgUser = "Unknown Customer";
+            if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user) {
+                let userObj = window.Telegram.WebApp.initDataUnsafe.user;
+                tgUser = userObj.first_name || '';
+                if (userObj.last_name) tgUser += ' ' + userObj.last_name;
+                if (userObj.username) tgUser += ` (@${userObj.username})`;
+            }
+
+            let text = `📦 <b>NEW ORDER ALERT!</b>\n`;
+            text += `━━━━━━━━━━━━━━━━━━\n`;
+            text += `👤 <b>អតិថិជន:</b> ${tgUser}\n`;
+            text += `🎮 <b>ប្រភេទហ្គេម:</b> ${gameNameStr}\n`;
+            text += `🆔 <b>ID Game:</b> <code>${id1}</code>\n`;
+            text += `💎 <b>កញ្ចប់ទិញ:</b> ${pkgAmount}\n`;
+            text += `💰 <b>តម្លៃ:</b> ${pkgPrice}\n`;
+            text += `━━━━━━━━━━━━━━━━━━\n`;
+            text += `⏳ <b>ពេលវេលា:</b> ${new Date().toLocaleString('en-US', { timeZone: 'Asia/Phnom_Penh' })}`;
+
+            let actionBtn = document.getElementById('main-action-btn');
+            let originalText = actionBtn.innerText;
+            actionBtn.innerText = 'កំពុងបញ្ជូនទិន្នន័យ...';
+            actionBtn.disabled = true;
+
+            let url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: text,
+                    parse_mode: 'HTML'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.ok) {
+                    alert('✅ ការបញ្ជាទិញទទួលបានជោគជ័យ! សូមរង់ចាំការដំណើរការពី Admin...');
+                    if (currentView === 'freefire') {
+                        document.getElementById('freefire-id-1').value = '';
+                        document.getElementById('freefire-id-2').value = '';
+                    }
+                    showHome(); 
+                } else {
+                    alert('❌ មានបញ្ហាក្នុងការបញ្ជូនទិន្នន័យ សូមសាកល្បងម្ដងទៀត!');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('❌ មានបញ្ហាបណ្ដាញទាក់ទង សូមសាកល្បងម្ដងទៀត!');
+            })
+            .finally(() => {
+                actionBtn.innerText = originalText;
+                actionBtn.disabled = false;
+            });
         }
 
         function showRobloxStore() {
