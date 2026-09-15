@@ -38,7 +38,7 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.6);
         }
 
-        /* ភ្លើង RGB វិលជុំវិញ សម្រាប់ស៊ុមធំ, ប្រអប់ហ្គេម, អក្សររត់ និងប៊ូតុង */
+        /* Shared RGB Animation */
         .rgb-border-wrapper::before, 
         .game-card-wrapper::before, 
         .btn-wrapper::before,
@@ -113,19 +113,32 @@
             letter-spacing: 1px;
         }
 
-        /* ----------------- Banner Section ----------------- */
+        /* ----------------- Banner Section (ភ្លើង ខៀវ ក្រហម លឿង រត់បុកគ្នា) ----------------- */
         .banner-wrapper {
+            position: relative;
             width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
+            border-radius: 14px;
+            padding: 3px; /* កម្រាស់ភ្លើងស៊ុម Banner */
             margin-bottom: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            border: 1px solid #f1f5f9;
+            /* បញ្ចូលពណ៌ ខៀវ ក្រហម លឿង */
+            background: linear-gradient(90deg, #0066ff, #ff0044, #ffcc00, #0066ff);
+            background-size: 300% 100%;
+            /* ដាក់ animation ឲ្យរត់ទៅមកយឺតៗ (alternate) */
+            animation: banner-glow-bounce 3s ease-in-out infinite alternate;
         }
+
+        @keyframes banner-glow-bounce {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
         .shop-banner {
             width: 100%;
             display: block;
             object-fit: cover;
+            border-radius: 11px; /* ឲ្យកែងស្របនឹងស៊ុមភ្លើងខាងក្រៅ */
+            background: #fff;
         }
         
         /* ----------------- Scrolling Welcome Text with RGB ----------------- */
@@ -187,7 +200,7 @@
             position: relative;
             flex: 1;
             border-radius: 14px;
-            padding: 3px; /* កម្រាស់ភ្លើង RGB */
+            padding: 2.5px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             transition: transform 0.2s ease;
@@ -206,7 +219,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px; /* គម្លាតរវាង Logo និងអក្សរ */
+            gap: 8px; 
             z-index: 1;
             transition: all 0.2s ease;
         }
@@ -214,7 +227,6 @@
             background: #f0f9ff;
         }
 
-        /* Game Logo ថ្មី (ទំហំប៉ុន Logo ហាង) */
         .game-logo {
             width: 48px;
             height: 48px;
@@ -253,7 +265,7 @@
             color: #0284c7; 
         }
         .game-card.active .game-logo {
-            border-color: #38bdf8; /* ប្តូរពណ៌ស៊ុម Logo ពេលរើស */
+            border-color: #38bdf8; 
         }
         .game-card.active .active-tick {
             opacity: 1;
@@ -391,7 +403,7 @@
                     </div>
                 </div>
 
-                <!-- Banner Section -->
+                <!-- Banner Section (មានភ្លើងខៀវ ក្រហម លឿង រត់បុកគ្នា) -->
                 <div class="banner-wrapper">
                     <img src="https://img.sanishtech.com/u/632af75453b5770a7b832247e13aa279.png" alt="Promo Banner" class="shop-banner">
                 </div>
