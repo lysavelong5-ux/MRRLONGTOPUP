@@ -53,7 +53,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* ----------------- CONTAINER ខាងក្នុង (តូចល្មមស្អាត) ----------------- */
+        /* ----------------- CONTAINER ខាងក្នុង ----------------- */
         .container {
             position: relative;
             background: #ffffff;
@@ -146,7 +146,7 @@
         .game-name {
             font-weight: 600;
             font-size: 11px;
-            color: #1e293b;
+            color: #1e293b; /* ធ្វើឱ្យពណ៌អក្សរ ROBLOX ដូចហ្គេមដទៃ */
         }
 
         /* ----------------- ROBLOX PACKAGES GRID ----------------- */
@@ -252,7 +252,7 @@
     <div class="rgb-border-wrapper">
         <div class="container">
             
-            <!-- VIEW 1: HOME PAGE (គ្មានប៊ូតុង TOUP NOW ញ៉េញ៉ៃ) -->
+            <!-- VIEW 1: HOME PAGE -->
             <div id="home-view" class="header-content">
                 <h2>FOXING CAMBO TOPUP</h2>
                 <div class="subtitle">TOUP GAME STORE 24/7</div>
@@ -273,15 +273,16 @@
                             <div class="game-name">FREE FIRE</div>
                         </div>
                     </div>
+                    <!-- ROBLOX កាតមានទម្រង់ដូចហ្គេមដទៃ -->
                     <div class="game-card-wrapper" onclick="showRobloxStore()">
                         <div class="game-card">
-                            <div class="game-name" style="color: #0284c7;">ROBLOX <span class="blue-tick">✔</span></div>
+                            <div class="game-name">ROBLOX</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- VIEW 2: ROBLOX STORE (មានបង្ហាញប៊ូតុង TOUP NOW ពេលចូលដល់ store) -->
+            <!-- VIEW 2: ROBLOX STORE -->
             <div id="roblox-view" class="header-content hidden">
                 <h2>ROBLOX STORE</h2>
                 <div class="subtitle">FOXING CAMBO TOPUP 24/7</div>
@@ -349,10 +350,8 @@
 
             <!-- FOOTER SECTION -->
             <div class="footer-section">
-                <!-- ប៊ូតុង Back (បង្ហាញតែពេលនៅหน้า Roblox Store) -->
                 <button id="back-btn" class="back-btn hidden" onclick="showHome()">⬅ ត្រឡប់ក្រោយ (Back)</button>
 
-                <!-- ប៊ូតុង TOUP NOW (បង្ហាញតែពេលនៅหน้า Roblox Store) -->
                 <div id="topup-btn-container" class="btn-wrapper hidden">
                     <button class="topup-btn" onclick="alert('សូមអរគុណ! ប្រព័ន្ធកំពុងដំណើរការ...')">🛒 ទិញឥឡូវនេះ (TOUP NOW)</button>
                 </div>
