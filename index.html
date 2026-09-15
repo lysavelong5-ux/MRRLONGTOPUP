@@ -120,25 +120,37 @@
             border-radius: 14px;
             padding: 3px; /* កម្រាស់ភ្លើងស៊ុម Banner */
             margin-bottom: 12px;
+            overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            /* បញ្ចូលពណ៌ ខៀវ ក្រហម លឿង */
-            background: linear-gradient(90deg, #0066ff, #ff0044, #ffcc00, #0066ff);
-            background-size: 300% 100%;
-            /* ដាក់ animation ឲ្យរត់ទៅមកយឺតៗ (alternate) */
-            animation: banner-glow-bounce 3s ease-in-out infinite alternate;
+        }
+        
+        .banner-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -150%;
+            left: -50%;
+            width: 200%;
+            height: 400%;
+            /* ពណ៌: ខៀវ ក្រហម លឿង */
+            background: conic-gradient(from 0deg, #0066ff, #ff0055, #ffff00, #ff0055, #0066ff);
+            /* alternate ធ្វើឲ្យភ្លើងរត់ទៅហើយ រត់ត្រឡប់មកវិញ (បុកគ្នាទៅវិញទៅមក) */
+            animation: banner-glow-bounce 3.5s linear infinite alternate;
+            z-index: 0;
         }
 
         @keyframes banner-glow-bounce {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .shop-banner {
+            position: relative;
             width: 100%;
             display: block;
             object-fit: cover;
-            border-radius: 11px; /* ឲ្យកែងស្របនឹងស៊ុមភ្លើងខាងក្រៅ */
+            border-radius: 11px;
             background: #fff;
+            z-index: 1; /* ឲ្យរូបភាពនៅពីលើភ្លើង */
         }
         
         /* ----------------- Scrolling Welcome Text with RGB ----------------- */
@@ -403,7 +415,7 @@
                     </div>
                 </div>
 
-                <!-- Banner Section (មានភ្លើងខៀវ ក្រហម លឿង រត់បុកគ្នា) -->
+                <!-- Banner Section (មានភ្លើង ខៀវ ក្រហម លឿង រត់បុកគ្នា) -->
                 <div class="banner-wrapper">
                     <img src="https://img.sanishtech.com/u/632af75453b5770a7b832247e13aa279.png" alt="Promo Banner" class="shop-banner">
                 </div>
@@ -469,58 +481,20 @@
                 </div>
 
                 <div class="packages-grid">
-                    <div class="package-card active" onclick="selectPackage(this)">
-                        <div class="robux-amount">80 Robux</div>
-                        <div class="robux-price">$1.00</div>
-                    </div>
-                    <div class="package-card" onclick="selectPackage(this)">
-                        <div class="robux-amount">160 Robux</div>
-                        <div class="robux-price">$2.00</div>
-                    </div>
-                    <div class="package-card" onclick="selectPackage(this)">
-                        <div class="robux-amount">240 Robux</div>
-                        <div class="robux-price">$3.00</div>
-                    </div>
-                    <div class="package-card" onclick="selectPackage(this)">
-                        <div class="robux-amount">320 Robux</div>
-                        <div class="robux-price">$4.00</div>
-                    </div>
-                    <div class="package-card" onclick="selectPackage(this)">
-                        <div class="robux-amount">400 Robux</div>
-                        <div class="robux-price">$5.00</div>
-                    </div>
-                    <div class="package-card" onclick="selectPackage(this)">
-                        <div class="robux-amount">480 Robux</div>
-                        <div class="robux-price">$6.00</div>
-                    </div>
-                    <div class="package-card" onclick="selectPackage(this)">
-                        <div class="robux-amount">560 Robux</div>
-                        <div class="robux-price">$7.00</div>
-                    </div>
-                    <div class="package-card" onclick="selectPackage(this)">
-                        <div class="robux-amount">640 Robux</div>
-                        <div class="robux-price">$8.00</div>
-                    </div>
-                    <div class="package-card" onclick="selectPackage(this)">
-                        <div class="robux-amount">720 Robux</div>
-                        <div class="robux-price">$9.00</div>
-                    </div>
-                    <div class="package-card" onclick="selectPackage(this)">
-                        <div class="robux-amount">800 Robux</div>
-                        <div class="robux-price">$10.00</div>
-                    </div>
-                    <div class="package-card" onclick="selectPackage(this)">
-                        <div class="robux-amount">880 Robux</div>
-                        <div class="robux-price">$11.00</div>
-                    </div>
-                    <div class="package-card" onclick="selectPackage(this)">
-                        <div class="robux-amount">960 Robux</div>
-                        <div class="robux-price">$12.00</div>
-                    </div>
-                    <div class="package-card" onclick="selectPackage(this)" style="grid-column: span 2;">
-                        <div class="robux-amount">1000 Robux</div>
-                        <div class="robux-price">$12.50</div>
-                    </div>
+                    <!-- Packages list unchanged for brevity, keeping it identical -->
+                    <div class="package-card active" onclick="selectPackage(this)"><div class="robux-amount">80 Robux</div><div class="robux-price">$1.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">160 Robux</div><div class="robux-price">$2.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">240 Robux</div><div class="robux-price">$3.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">320 Robux</div><div class="robux-price">$4.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">400 Robux</div><div class="robux-price">$5.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">480 Robux</div><div class="robux-price">$6.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">560 Robux</div><div class="robux-price">$7.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">640 Robux</div><div class="robux-price">$8.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">720 Robux</div><div class="robux-price">$9.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">800 Robux</div><div class="robux-price">$10.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">880 Robux</div><div class="robux-price">$11.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">960 Robux</div><div class="robux-price">$12.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)" style="grid-column: span 2;"><div class="robux-amount">1000 Robux</div><div class="robux-price">$12.50</div></div>
                 </div>
             </div>
 
