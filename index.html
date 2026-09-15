@@ -26,11 +26,12 @@
             overflow: hidden;
         }
 
-        /* ----------------- RGB ភ្លើងរត់ជុំវិញស៊ុមធំ ----------------- */
+        /* ----------------- RGB ភ្លើងរត់ជុំវិញស៊ុមធំ (ពង្រីកតាមគំនូស) ----------------- */
         .rgb-border-wrapper {
             position: relative;
-            width: 88%;
-            max-width: 360px;
+            width: 92%; /* ពង្រីកទទឹងបន្តិច */
+            max-width: 400px;
+            height: 82vh; /* កំណត់កម្ពស់ឱ្យលាតធំចុះក្រោមតាមគំនូសពណ៌បៃតង */
             padding: 3px;
             border-radius: 22px;
             overflow: hidden;
@@ -58,11 +59,12 @@
             position: relative;
             background: #ffffff;
             width: 100%;
-            padding: 20px 16px;
+            height: 100%; /* ឱ្យកម្ពស់លាតពេញស៊ុម RGB */
+            padding: 24px 16px;
             border-radius: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: space-between; /* រុញ Footer ទៅបាតក្រោមជានិច្ច */
             z-index: 1;
             text-align: center;
         }
@@ -70,12 +72,12 @@
         .header-content {
             width: 100%;
             overflow-y: auto;
-            max-height: calc(80vh - 60px);
+            max-height: calc(100% - 60px);
             padding-right: 2px;
         }
 
         h2 {
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 700;
             margin-bottom: 2px;
             color: #0f172a;
@@ -84,22 +86,21 @@
         .subtitle {
             font-size: 11px;
             color: #64748b;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             font-weight: 500;
             letter-spacing: 1px;
         }
         .section-title {
             text-align: left;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
             color: #0f172a;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 5px;
         }
         
-        /* Blue Tick Style */
         .blue-tick {
             color: #38bdf8;
             font-size: 13px;
@@ -146,7 +147,7 @@
         .game-name {
             font-weight: 600;
             font-size: 11px;
-            color: #1e293b; /* ធ្វើឱ្យពណ៌អក្សរ ROBLOX ដូចហ្គេមដទៃ */
+            color: #1e293b;
         }
 
         /* ----------------- ROBLOX PACKAGES GRID ----------------- */
@@ -161,7 +162,7 @@
             background: #f8fafc;
             padding: 10px 12px;
             border-radius: 12px;
-            border: 2px solid #e2e8f0;
+            border: 1.5px solid #e2e8f0;
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -185,7 +186,8 @@
         /* ----------------- BUTTONS & FOOTER ----------------- */
         .footer-section {
             width: 100%;
-            margin-top: 8px;
+            margin-top: auto; /* រុញអោយនៅក្រោមរហូត */
+            padding-top: 10px;
         }
 
         .btn-wrapper {
@@ -200,10 +202,10 @@
             position: relative;
             background: #0f172a;
             color: #fff;
-            padding: 12px;
+            padding: 13px;
             border-radius: 12px;
             font-weight: 600;
-            font-size: 12px;
+            font-size: 13px;
             width: 100%;
             border: none;
             cursor: pointer;
@@ -217,10 +219,10 @@
         .back-btn {
             background: #f1f5f9;
             color: #334155;
-            padding: 8px;
+            padding: 10px;
             border-radius: 10px;
             font-weight: 600;
-            font-size: 11px;
+            font-size: 12px;
             width: 100%;
             border: 1px solid #cbd5e1;
             cursor: pointer;
@@ -233,12 +235,12 @@
         }
 
         .footer {
-            font-size: 9px;
+            font-size: 10px;
             color: #94a3b8;
             display: flex;
             justify-content: space-between;
             border-top: 1px solid #f1f5f9;
-            padding-top: 6px;
+            padding-top: 8px;
             font-weight: 500;
         }
 
@@ -273,7 +275,6 @@
                             <div class="game-name">FREE FIRE</div>
                         </div>
                     </div>
-                    <!-- ROBLOX កាតមានទម្រង់ដូចហ្គេមដទៃ -->
                     <div class="game-card-wrapper" onclick="showRobloxStore()">
                         <div class="game-card">
                             <div class="game-name">ROBLOX</div>
@@ -350,8 +351,10 @@
 
             <!-- FOOTER SECTION -->
             <div class="footer-section">
+                <!-- ប៊ូតុង Back នឹងលោតមកពេលចូល Store -->
                 <button id="back-btn" class="back-btn hidden" onclick="showHome()">⬅ ត្រឡប់ក្រោយ (Back)</button>
 
+                <!-- ប៊ូតុង TOUP NOW នឹងលោតមកពេលចូល Store -->
                 <div id="topup-btn-container" class="btn-wrapper hidden">
                     <button class="topup-btn" onclick="alert('សូមអរគុណ! ប្រព័ន្ធកំពុងដំណើរការ...')">🛒 ទិញឥឡូវនេះ (TOUP NOW)</button>
                 </div>
