@@ -29,10 +29,10 @@
         /* ----------------- RGB ភ្លើងរត់ជុំវិញស៊ុមធំ ----------------- */
         .rgb-border-wrapper {
             position: relative;
-            width: 92%;
-            max-width: 380px;
+            width: 88%;
+            max-width: 360px;
             padding: 3px;
-            border-radius: 24px;
+            border-radius: 22px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0,0,0,0.6);
         }
@@ -53,13 +53,13 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* ----------------- CONTAINER ខាងក្នុង ----------------- */
+        /* ----------------- CONTAINER ខាងក្នុង (តូចល្មមស្អាត) ----------------- */
         .container {
             position: relative;
             background: #ffffff;
             width: 100%;
-            padding: 22px 18px;
-            border-radius: 22px;
+            padding: 20px 16px;
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -70,12 +70,12 @@
         .header-content {
             width: 100%;
             overflow-y: auto;
-            max-height: calc(85vh - 90px);
+            max-height: calc(80vh - 60px);
             padding-right: 2px;
         }
 
         h2 {
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 700;
             margin-bottom: 2px;
             color: #0f172a;
@@ -84,16 +84,16 @@
         .subtitle {
             font-size: 11px;
             color: #64748b;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             font-weight: 500;
             letter-spacing: 1px;
         }
         .section-title {
             text-align: left;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             color: #0f172a;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -102,7 +102,7 @@
         /* Blue Tick Style */
         .blue-tick {
             color: #38bdf8;
-            font-size: 14px;
+            font-size: 13px;
             vertical-align: middle;
         }
 
@@ -111,27 +111,27 @@
             display: flex;
             justify-content: space-between;
             gap: 8px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .game-card-wrapper {
             position: relative;
             flex: 1;
-            border-radius: 16px;
+            border-radius: 14px;
             padding: 2px;
             overflow: hidden;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             transition: transform 0.2s ease;
         }
         .game-card-wrapper:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
         }
 
         .game-card {
             position: relative;
             background: #f8fafc;
-            padding: 18px 4px;
-            border-radius: 14px;
+            padding: 16px 4px;
+            border-radius: 12px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -154,7 +154,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 8px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-align: left;
         }
         .package-card {
@@ -185,25 +185,25 @@
         /* ----------------- BUTTONS & FOOTER ----------------- */
         .footer-section {
             width: 100%;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         .btn-wrapper {
             position: relative;
-            border-radius: 16px;
+            border-radius: 14px;
             padding: 2.5px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.2);
+            box-shadow: 0 6px 15px rgba(56, 189, 248, 0.2);
         }
         .topup-btn {
             position: relative;
             background: #0f172a;
             color: #fff;
-            padding: 13px;
-            border-radius: 14px;
+            padding: 12px;
+            border-radius: 12px;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             width: 100%;
             border: none;
             cursor: pointer;
@@ -217,10 +217,10 @@
         .back-btn {
             background: #f1f5f9;
             color: #334155;
-            padding: 9px;
+            padding: 8px;
             border-radius: 10px;
             font-weight: 600;
-            font-size: 12px;
+            font-size: 11px;
             width: 100%;
             border: 1px solid #cbd5e1;
             cursor: pointer;
@@ -238,7 +238,7 @@
             display: flex;
             justify-content: space-between;
             border-top: 1px solid #f1f5f9;
-            padding-top: 8px;
+            padding-top: 6px;
             font-weight: 500;
         }
 
@@ -252,7 +252,7 @@
     <div class="rgb-border-wrapper">
         <div class="container">
             
-            <!-- VIEW 1: HOME PAGE -->
+            <!-- VIEW 1: HOME PAGE (គ្មានប៊ូតុង TOUP NOW ញ៉េញ៉ៃ) -->
             <div id="home-view" class="header-content">
                 <h2>FOXING CAMBO TOPUP</h2>
                 <div class="subtitle">TOUP GAME STORE 24/7</div>
@@ -281,7 +281,7 @@
                 </div>
             </div>
 
-            <!-- VIEW 2: ROBLOX STORE -->
+            <!-- VIEW 2: ROBLOX STORE (មានបង្ហាញប៊ូតុង TOUP NOW ពេលចូលដល់ store) -->
             <div id="roblox-view" class="header-content hidden">
                 <h2>ROBLOX STORE</h2>
                 <div class="subtitle">FOXING CAMBO TOPUP 24/7</div>
@@ -349,9 +349,11 @@
 
             <!-- FOOTER SECTION -->
             <div class="footer-section">
+                <!-- ប៊ូតុង Back (បង្ហាញតែពេលនៅหน้า Roblox Store) -->
                 <button id="back-btn" class="back-btn hidden" onclick="showHome()">⬅ ត្រឡប់ក្រោយ (Back)</button>
 
-                <div class="btn-wrapper">
+                <!-- ប៊ូតុង TOUP NOW (បង្ហាញតែពេលនៅหน้า Roblox Store) -->
+                <div id="topup-btn-container" class="btn-wrapper hidden">
                     <button class="topup-btn" onclick="alert('សូមអរគុណ! ប្រព័ន្ធកំពុងដំណើរការ...')">🛒 ទិញឥឡូវនេះ (TOUP NOW)</button>
                 </div>
 
@@ -372,12 +374,14 @@
             document.getElementById('home-view').classList.add('hidden');
             document.getElementById('roblox-view').classList.remove('hidden');
             document.getElementById('back-btn').classList.remove('hidden');
+            document.getElementById('topup-btn-container').classList.remove('hidden');
         }
 
         function showHome() {
             document.getElementById('roblox-view').classList.add('hidden');
             document.getElementById('home-view').classList.remove('hidden');
             document.getElementById('back-btn').classList.add('hidden');
+            document.getElementById('topup-btn-container').classList.add('hidden');
         }
 
         function selectPackage(element) {
