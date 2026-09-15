@@ -42,7 +42,8 @@
         .rgb-border-wrapper::before, 
         .game-card-wrapper::before, 
         .btn-wrapper::before,
-        .welcome-wrapper::before {
+        .welcome-wrapper::before,
+        .splash-logo-wrapper::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -78,6 +79,98 @@
             overflow-y: auto;
             max-height: calc(100% - 60px);
             padding-right: 2px;
+        }
+
+        /* ----------------- Splash Screen (ទំព័រស្វាគមន៍) ----------------- */
+        .splash-view {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .splash-logo-wrapper {
+            position: relative;
+            border-radius: 50%;
+            padding: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
+        }
+        
+        .splash-logo {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            z-index: 1;
+            background: #fff;
+        }
+
+        .splash-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .splash-credits {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+            width: 100%;
+            font-size: 11px;
+            font-weight: 600;
+            color: #334155;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .splash-credits span {
+            color: #0284c7;
+            font-weight: 700;
+        }
+
+        .splash-timer {
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+
+        .splash-countdown {
+            font-size: 24px;
+            font-weight: 800;
+            color: #e11d48;
+            text-shadow: 0 2px 5px rgba(225, 29, 72, 0.2);
+        }
+
+        .skip-btn {
+            background: #eef2ff;
+            color: #4f46e5;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 10px;
+        }
+        .skip-btn:active {
+            transform: scale(0.95);
         }
 
         /* ----------------- Header Top (Logo & Title) ----------------- */
@@ -118,7 +211,7 @@
             position: relative;
             width: 100%;
             border-radius: 14px;
-            padding: 3px; /* កម្រាស់ភ្លើងស៊ុម Banner */
+            padding: 3px;
             margin-bottom: 12px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
@@ -131,9 +224,7 @@
             left: -50%;
             width: 200%;
             height: 400%;
-            /* ពណ៌: ខៀវ ក្រហម លឿង */
             background: conic-gradient(from 0deg, #0066ff, #ff0055, #ffff00, #ff0055, #0066ff);
-            /* alternate ធ្វើឲ្យភ្លើងរត់ទៅហើយ រត់ត្រឡប់មកវិញ (បុកគ្នាទៅវិញទៅមក) */
             animation: banner-glow-bounce 3.5s linear infinite alternate;
             z-index: 0;
         }
@@ -150,7 +241,7 @@
             object-fit: cover;
             border-radius: 11px;
             background: #fff;
-            z-index: 1; /* ឲ្យរូបភាពនៅពីលើភ្លើង */
+            z-index: 1;
         }
         
         /* ----------------- Scrolling Welcome Text with RGB ----------------- */
@@ -249,7 +340,6 @@
             transition: all 0.2s ease;
         }
 
-        /* Active Tick */
         .active-tick {
             position: absolute;
             top: 6px;
@@ -403,24 +493,48 @@
     <div class="rgb-border-wrapper">
         <div class="container">
             
-            <!-- VIEW 1: HOME PAGE -->
-            <div id="home-view" class="header-content">
+            <!-- ================= VIEW 0: SPLASH SCREEN (លោតមុនគេ) ================= -->
+            <div id="splash-view" class="splash-view">
+                <div class="splash-logo-wrapper">
+                    <img src="https://img.sanishtech.com/u/bcfdd7242970dba2e78b3dca9f4f5a1a.png" alt="Logo" class="splash-logo">
+                </div>
                 
-                <!-- Header Top (Logo & Text) -->
+                <div class="splash-title">
+                    សូមស្វាគមន៌មកកាន់<br>
+                    <span style="color: #0284c7;">FOXING CAMBO TOPUP 24/7</span>
+                </div>
+
+                <div class="splash-credits">
+                    អ្នកសម្រួលបច្ចេកទេស : <br><span>លី សៀវឡុង [ LYY SEAV LONG ]</span><br><br>
+                    អ្នកគ្រប់គ្រង : <br><span>នុន ពិសិទ្ធិ [ NUN PISETH ]</span>
+                </div>
+
+                <div class="splash-timer">
+                    កំពុងចូលទៅកាន់ហាងក្នុងរយៈពេល<br>
+                    <span id="countdown-timer" class="splash-countdown">20</span> វិនាទី...
+                </div>
+
+                <button class="skip-btn" onclick="enterStore()">ចូលហាងឥឡូវនេះ ➔</button>
+            </div>
+
+            <!-- ================= VIEW 1: HOME PAGE (លាក់សិន) ================= -->
+            <div id="home-view" class="header-content hidden">
+                
+                <!-- Header Top -->
                 <div class="header-top">
-                    <img src="https://img.sanishtech.com/u/bcfdd7242970dba2e78b3dca9f4f5a1a.png" alt="Foxing Cambo Logo" class="shop-logo">
+                    <img src="https://img.sanishtech.com/u/bcfdd7242970dba2e78b3dca9f4f5a1a.png" alt="Logo" class="shop-logo">
                     <div class="shop-title-wrapper">
                         <h2>FOXING CAMBO TOPUP</h2>
                         <div class="subtitle">TOUP GAME STORE 24/7</div>
                     </div>
                 </div>
 
-                <!-- Banner Section (មានភ្លើង ខៀវ ក្រហម លឿង រត់បុកគ្នា) -->
+                <!-- Banner Section -->
                 <div class="banner-wrapper">
-                    <img src="https://img.sanishtech.com/u/632af75453b5770a7b832247e13aa279.png" alt="Promo Banner" class="shop-banner">
+                    <img src="https://img.sanishtech.com/u/632af75453b5770a7b832247e13aa279.png" alt="Banner" class="shop-banner">
                 </div>
                 
-                <!-- Welcome Marquee Text -->
+                <!-- Welcome Marquee -->
                 <div class="welcome-wrapper">
                     <div class="welcome-box">
                         <marquee scrollamount="4" behavior="scroll" direction="left">
@@ -437,15 +551,13 @@
                 </div>
 
                 <div class="game-grid">
-                    <!-- MOBILE CARD -->
                     <div class="game-card-wrapper" onclick="selectMainGame(this, 'MOBILE')">
                         <div class="game-card">
                             <div class="active-tick">✔</div>
-                            <img src="https://img.sanishtech.com/u/b35f120e0af59b9eb2f74432fec73169.jpeg" alt="Mobile Legends" class="game-logo">
+                            <img src="https://img.sanishtech.com/u/b35f120e0af59b9eb2f74432fec73169.jpeg" alt="Mobile" class="game-logo">
                             <div class="game-name">MOBILE</div>
                         </div>
                     </div>
-                    <!-- FREE FIRE CARD -->
                     <div class="game-card-wrapper" onclick="selectMainGame(this, 'FREE FIRE')">
                         <div class="game-card">
                             <div class="active-tick">✔</div>
@@ -453,7 +565,6 @@
                             <div class="game-name">FREE FIRE</div>
                         </div>
                     </div>
-                    <!-- ROBLOX CARD -->
                     <div class="game-card-wrapper" onclick="selectMainGame(this, 'ROBLOX')">
                         <div class="game-card">
                             <div class="active-tick">✔</div>
@@ -464,11 +575,10 @@
                 </div>
             </div>
 
-            <!-- VIEW 2: ROBLOX STORE -->
+            <!-- ================= VIEW 2: ROBLOX STORE (លាក់សិន) ================= -->
             <div id="roblox-view" class="header-content hidden">
-                <!-- Header Top for Store (Logo & Text) -->
                 <div class="header-top">
-                    <img src="https://img.sanishtech.com/u/bcfdd7242970dba2e78b3dca9f4f5a1a.png" alt="Foxing Cambo Logo" class="shop-logo">
+                    <img src="https://img.sanishtech.com/u/bcfdd7242970dba2e78b3dca9f4f5a1a.png" alt="Logo" class="shop-logo">
                     <div class="shop-title-wrapper">
                         <h2>ROBLOX STORE</h2>
                         <div class="subtitle">FOXING CAMBO TOPUP 24/7</div>
@@ -481,7 +591,7 @@
                 </div>
 
                 <div class="packages-grid">
-                    <!-- Packages list unchanged for brevity, keeping it identical -->
+                    <!-- កញ្ចប់ទាំងអស់ -->
                     <div class="package-card active" onclick="selectPackage(this)"><div class="robux-amount">80 Robux</div><div class="robux-price">$1.00</div></div>
                     <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">160 Robux</div><div class="robux-price">$2.00</div></div>
                     <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">240 Robux</div><div class="robux-price">$3.00</div></div>
@@ -498,8 +608,8 @@
                 </div>
             </div>
 
-            <!-- FOOTER SECTION -->
-            <div class="footer-section">
+            <!-- ================= FOOTER SECTION (លាក់សិន) ================= -->
+            <div id="footer-section" class="footer-section hidden">
                 <button id="back-btn" class="back-btn hidden" onclick="showHome()">⬅ ត្រឡប់ក្រោយ (Back)</button>
 
                 <div id="topup-btn-container" class="btn-wrapper hidden">
@@ -521,7 +631,35 @@
 
         let currentView = 'home';
         let selectedMainGame = '';
+        
+        // ------------------ មុខងារ Splash Screen (Countdown) ------------------
+        let countdownValue = 20; // ២០ វិនាទី
+        let countdownInterval;
 
+        window.onload = function() {
+            // ចាប់ផ្តើមរាប់ថយក្រោយពេលបើក App ភ្លាម
+            countdownInterval = setInterval(() => {
+                countdownValue--;
+                document.getElementById('countdown-timer').innerText = countdownValue;
+                
+                if (countdownValue <= 0) {
+                    enterStore(); // ចូលហាងស្វ័យប្រវត្តិពេលដល់ ០
+                }
+            }, 1000);
+        };
+
+        function enterStore() {
+            clearInterval(countdownInterval); // បញ្ឈប់ការរាប់
+            
+            // លាក់ទំព័រ Splash 
+            document.getElementById('splash-view').classList.add('hidden');
+            
+            // បង្ហាញទំព័រ Home និង Footer
+            document.getElementById('home-view').classList.remove('hidden');
+            document.getElementById('footer-section').classList.remove('hidden');
+        }
+
+        // ------------------ មុខងាររើសហ្គេម ------------------
         function selectMainGame(element, gameName) {
             let cards = document.querySelectorAll('#home-view .game-card');
             cards.forEach(c => c.classList.remove('active'));
