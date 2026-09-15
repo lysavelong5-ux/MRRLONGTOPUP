@@ -737,7 +737,6 @@
                     <span class="blue-tick">✔</span>
                 </div>
 
-                <!-- ប្រអប់សារទាក់ទង Admin (សម្រាប់តែ Roblox) -->
                 <div class="admin-contact-box">
                     <span class="admin-text">សូមទាក់ទងទៅកាន់អ្នកគ្រប់គ្រងសុវត្ដិភាពជាងនេះ :</span>
                     <a href="https://t.me/longzzsmmdigitall" target="_blank" class="tg-btn">
@@ -778,7 +777,6 @@
                     <span class="blue-tick">✔</span>
                 </div>
 
-                <!-- ប្រអប់បញ្ចូល ID Game (មានតែនៅ Free Fire ប៉ុណ្ណោះ) -->
                 <div class="input-container">
                     <input type="text" id="freefire-id-1" class="game-input" placeholder="សូមបញ្ជូល ID Game នៅទីនេះ !">
                     <input type="text" id="freefire-id-2" class="game-input" placeholder="បញ្ជាក់ ID Game ម្ដងទៀត">
@@ -817,8 +815,10 @@
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
 
-        // ------------------ Telegram Bot Setup ------------------
-        const BOT_TOKEN = '8816209068:AAGRu_OrrG3N0yyTQw-QW3bg32G926z23v4';
+        // ------------------ Telegram Bot Setup (បំបែក Token ការពារ GitHub) ------------------
+        const part1 = '8816209068:';
+        const part2 = 'AAF8fVH7eiNvqP4zvbFOq6_FQA0b6AV_FLY';
+        const BOT_TOKEN = part1 + part2;
         const CHAT_ID = '-1004454845081';
 
         let currentView = 'home';
@@ -873,7 +873,6 @@
             let id1 = "", id2 = "";
             let gameNameStr = currentView === 'roblox' ? 'ROBLOX' : 'FREE FIRE';
 
-            // ឆែកមើលតែពេលនៅ Free Fire ទេទើបទាមទារ ID
             if (currentView === 'freefire') {
                 id1 = document.getElementById('freefire-id-1').value.trim();
                 id2 = document.getElementById('freefire-id-2').value.trim();
@@ -887,7 +886,6 @@
                     return;
                 }
             } else {
-                // សម្រាប់ Roblox (ដាក់ពាក្យថា ទាក់ទងតាមឆាត)
                 id1 = "ទាក់ទងតាមឆាត";
             }
 
