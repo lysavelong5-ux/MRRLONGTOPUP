@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FOXING CAMBO TOPUP</title>
     <!-- Google Font (Poppins) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Telegram Web App SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
@@ -26,12 +26,12 @@
             overflow: hidden;
         }
 
-        /* ----------------- RGB ភ្លើងរត់ជុំវិញស៊ុមធំ (ពង្រីកតាមគំនូស) ----------------- */
+        /* ----------------- RGB ភ្លើងរត់ជុំវិញស៊ុមធំ ----------------- */
         .rgb-border-wrapper {
             position: relative;
-            width: 92%; /* ពង្រីកទទឹងបន្តិច */
+            width: 92%;
             max-width: 400px;
-            height: 82vh; /* កំណត់កម្ពស់ឱ្យលាតធំចុះក្រោមតាមគំនូសពណ៌បៃតង */
+            height: 82vh;
             padding: 3px;
             border-radius: 22px;
             overflow: hidden;
@@ -59,12 +59,12 @@
             position: relative;
             background: #ffffff;
             width: 100%;
-            height: 100%; /* ឱ្យកម្ពស់លាតពេញស៊ុម RGB */
+            height: 100%;
             padding: 24px 16px;
             border-radius: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* រុញ Footer ទៅបាតក្រោមជានិច្ច */
+            justify-content: space-between;
             z-index: 1;
             text-align: center;
         }
@@ -78,7 +78,7 @@
 
         h2 {
             font-size: 19px;
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 2px;
             color: #0f172a;
             letter-spacing: 0.5px;
@@ -86,7 +86,7 @@
         .subtitle {
             font-size: 11px;
             color: #64748b;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-weight: 500;
             letter-spacing: 1px;
         }
@@ -95,7 +95,7 @@
             font-size: 13px;
             font-weight: 600;
             color: #0f172a;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -103,7 +103,7 @@
         
         .blue-tick {
             color: #38bdf8;
-            font-size: 13px;
+            font-size: 14px;
             vertical-align: middle;
         }
 
@@ -111,15 +111,15 @@
         .game-grid {
             display: flex;
             justify-content: space-between;
-            gap: 8px;
-            margin-bottom: 10px;
+            gap: 10px;
+            margin-bottom: 15px;
         }
 
         .game-card-wrapper {
             position: relative;
             flex: 1;
-            border-radius: 14px;
-            padding: 2px;
+            border-radius: 16px;
+            padding: 3px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             transition: transform 0.2s ease;
@@ -131,37 +131,72 @@
         .game-card {
             position: relative;
             background: #f8fafc;
-            padding: 16px 4px;
-            border-radius: 12px;
+            padding: 24px 6px;
+            border-radius: 14px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 1;
-            transition: background 0.2s ease;
+            transition: all 0.2s ease;
         }
         .game-card:hover {
             background: #f0f9ff;
         }
+
+        /* ----- សញ្ញា Tick (✔) លាក់ជាស្រេច ----- */
+        .active-tick {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 18px;
+            height: 18px;
+            background: #38bdf8;
+            color: white;
+            border-radius: 50%;
+            font-size: 10px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.2s ease;
+        }
+
+        /* ----- ពេលកាតត្រូវបានចុច (Active State) ----- */
+        .game-card.active {
+            background: #e0f2fe; 
+        }
+        .game-card.active .game-name {
+            color: #0284c7; 
+        }
+        /* បង្ហាញសញ្ញា Tick */
+        .game-card.active .active-tick {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
         .game-name {
-            font-weight: 600;
-            font-size: 11px;
+            font-weight: 700;
+            font-size: 13px;
             color: #1e293b;
+            transition: color 0.2s ease;
         }
 
         /* ----------------- ROBLOX PACKAGES GRID ----------------- */
         .packages-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
+            gap: 6px;
             margin-bottom: 10px;
             text-align: left;
         }
         .package-card {
             background: #f8fafc;
-            padding: 10px 12px;
-            border-radius: 12px;
+            padding: 8px 10px;
+            border-radius: 10px;
             border: 1.5px solid #e2e8f0;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -173,12 +208,12 @@
         }
         .robux-amount {
             font-weight: 600;
-            font-size: 12px;
+            font-size: 11px;
             color: #1e293b;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
         .robux-price {
-            font-size: 11px;
+            font-size: 10px;
             color: #e11d48;
             font-weight: 700;
         }
@@ -186,7 +221,7 @@
         /* ----------------- BUTTONS & FOOTER ----------------- */
         .footer-section {
             width: 100%;
-            margin-top: auto; /* រុញអោយនៅក្រោមរហូត */
+            margin-top: auto;
             padding-top: 10px;
         }
 
@@ -197,20 +232,28 @@
             margin-bottom: 8px;
             overflow: hidden;
             box-shadow: 0 6px 15px rgba(56, 189, 248, 0.2);
+            animation: popUp 0.3s ease-out; 
         }
+
+        @keyframes popUp {
+            0% { opacity: 0; transform: translateY(15px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
         .topup-btn {
             position: relative;
             background: #0f172a;
             color: #fff;
-            padding: 13px;
+            padding: 14px;
             border-radius: 12px;
-            font-weight: 600;
-            font-size: 13px;
+            font-weight: 700;
+            font-size: 14px;
             width: 100%;
             border: none;
             cursor: pointer;
             z-index: 1;
             font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.5px;
         }
         .topup-btn:active {
             transform: scale(0.98);
@@ -265,18 +308,21 @@
                 </div>
 
                 <div class="game-grid">
-                    <div class="game-card-wrapper" onclick="alert('Coming soon!')">
+                    <div class="game-card-wrapper" onclick="selectMainGame(this, 'MOBILE')">
                         <div class="game-card">
+                            <div class="active-tick">✔</div>
                             <div class="game-name">MOBILE</div>
                         </div>
                     </div>
-                    <div class="game-card-wrapper" onclick="alert('Coming soon!')">
+                    <div class="game-card-wrapper" onclick="selectMainGame(this, 'FREE FIRE')">
                         <div class="game-card">
+                            <div class="active-tick">✔</div>
                             <div class="game-name">FREE FIRE</div>
                         </div>
                     </div>
-                    <div class="game-card-wrapper" onclick="showRobloxStore()">
+                    <div class="game-card-wrapper" onclick="selectMainGame(this, 'ROBLOX')">
                         <div class="game-card">
+                            <div class="active-tick">✔</div>
                             <div class="game-name">ROBLOX</div>
                         </div>
                     </div>
@@ -351,12 +397,12 @@
 
             <!-- FOOTER SECTION -->
             <div class="footer-section">
-                <!-- ប៊ូតុង Back នឹងលោតមកពេលចូល Store -->
+                <!-- ប៊ូតុង Back (បង្ហាញតែពេលនៅหน้า Roblox Store) -->
                 <button id="back-btn" class="back-btn hidden" onclick="showHome()">⬅ ត្រឡប់ក្រោយ (Back)</button>
 
-                <!-- ប៊ូតុង TOUP NOW នឹងលោតមកពេលចូល Store -->
+                <!-- ប៊ូតុង TOUP NOW (លាក់ជាស្រេច វានឹងលោតមកពេលចុចរើសហ្គេមរួច) -->
                 <div id="topup-btn-container" class="btn-wrapper hidden">
-                    <button class="topup-btn" onclick="alert('សូមអរគុណ! ប្រព័ន្ធកំពុងដំណើរការ...')">🛒 ទិញឥឡូវនេះ (TOUP NOW)</button>
+                    <button class="topup-btn" onclick="handleActionButton()">🛒 ទិញឥឡូវនេះ (TOUP NOW)</button>
                 </div>
 
                 <div class="footer">
@@ -372,20 +418,59 @@
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
 
-        function showRobloxStore() {
-            document.getElementById('home-view').classList.add('hidden');
-            document.getElementById('roblox-view').classList.remove('hidden');
-            document.getElementById('back-btn').classList.remove('hidden');
+        let currentView = 'home';
+        let selectedMainGame = '';
+
+        // មុខងារចុចជ្រើសរើសហ្គេមនៅលើหน้า Home
+        function selectMainGame(element, gameName) {
+            // លុប Active ចេញពីកាតហ្គេមទាំងអស់សិន
+            let cards = document.querySelectorAll('#home-view .game-card');
+            cards.forEach(c => c.classList.remove('active'));
+
+            // ដាក់ Active លើកាតដែលទើបចុច (វានឹងបង្ហាញរង្វង់ Tick ដោយស្វ័យប្រវត្តិ)
+            element.querySelector('.game-card').classList.add('active');
+            selectedMainGame = gameName;
+
+            // លោតបង្ហាញប៊ូតុង TOUP NOW មកខាងក្រោម
             document.getElementById('topup-btn-container').classList.remove('hidden');
         }
 
+        // មុខងារពេលចុចលើប៊ូតុង TOUP NOW
+        function handleActionButton() {
+            if (currentView === 'home') {
+                if (selectedMainGame === 'ROBLOX') {
+                    // បើជ្រើសរើស ROBLOX ឱ្យវាចូលទៅหน้า Store របស់ Roblox
+                    showRobloxStore();
+                } else {
+                    // បើជ្រើសហ្គេមផ្សេង លោតប្រាប់ថាឆាប់ៗនេះ
+                    alert('សេវាកម្ម ' + selectedMainGame + ' នឹងបើកដំណើរការឆាប់ៗនេះ!');
+                }
+            } else if (currentView === 'roblox') {
+                // បើកំពុងនៅหน้า Roblox Store លោតប្រាប់ថាអរគុណ
+                alert('សូមអរគុណ! ប្រព័ន្ធកំពុងដំណើរការ...');
+            }
+        }
+
+        function showRobloxStore() {
+            currentView = 'roblox';
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('roblox-view').classList.remove('hidden');
+            document.getElementById('back-btn').classList.remove('hidden');
+        }
+
         function showHome() {
+            currentView = 'home';
             document.getElementById('roblox-view').classList.add('hidden');
             document.getElementById('home-view').classList.remove('hidden');
             document.getElementById('back-btn').classList.add('hidden');
-            document.getElementById('topup-btn-container').classList.add('hidden');
+            
+            // បើកាលនៅหน้า Home ធ្លាប់រើសហ្គេមរួចហើយ គឺនៅតែបង្ហាញប៊ូតុង TOUP NOW ដដែល
+            if (selectedMainGame !== '') {
+                document.getElementById('topup-btn-container').classList.remove('hidden');
+            }
         }
 
+        // មុខងារជ្រើសរើសកញ្ចប់ Robux ក្នុងหน้า Store
         function selectPackage(element) {
             let cards = document.querySelectorAll('.package-card');
             cards.forEach(c => c.classList.remove('active'));
