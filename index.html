@@ -206,7 +206,7 @@
             letter-spacing: 1px;
         }
 
-        /* ----------------- Banner Section (ភ្លើង ខៀវ ក្រហម លឿង រត់បុកគ្នា) ----------------- */
+        /* ----------------- Banner Section ----------------- */
         .banner-wrapper {
             position: relative;
             width: 100%;
@@ -244,7 +244,7 @@
             z-index: 1;
         }
         
-        /* ----------------- Scrolling Welcome Text with RGB ----------------- */
+        /* ----------------- Scrolling Welcome Text ----------------- */
         .welcome-wrapper {
             position: relative;
             border-radius: 12px;
@@ -289,6 +289,41 @@
             color: #38bdf8;
             font-size: 14px;
             vertical-align: middle;
+        }
+
+        /* ----------------- Telegram Admin Contact Box ----------------- */
+        .admin-contact-box {
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px dashed #38bdf8;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .admin-text {
+            font-size: 11px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        .tg-btn {
+            background: #0088cc;
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 6px rgba(0, 136, 204, 0.25);
+            transition: 0.2s;
+        }
+        .tg-btn:active {
+            transform: scale(0.95);
         }
 
         /* ----------------- 3D RGB GAME CARDS & LOGOS ----------------- */
@@ -493,7 +528,7 @@
     <div class="rgb-border-wrapper">
         <div class="container">
             
-            <!-- ================= VIEW 0: SPLASH SCREEN (លោតមុនគេ) ================= -->
+            <!-- ================= VIEW 0: SPLASH SCREEN ================= -->
             <div id="splash-view" class="splash-view">
                 <div class="splash-logo-wrapper">
                     <img src="https://img.sanishtech.com/u/bcfdd7242970dba2e78b3dca9f4f5a1a.png" alt="Logo" class="splash-logo">
@@ -517,10 +552,9 @@
                 <button class="skip-btn" onclick="enterStore()">ចូលហាងឥឡូវនេះ ➔</button>
             </div>
 
-            <!-- ================= VIEW 1: HOME PAGE (លាក់សិន) ================= -->
+            <!-- ================= VIEW 1: HOME PAGE ================= -->
             <div id="home-view" class="header-content hidden">
                 
-                <!-- Header Top -->
                 <div class="header-top">
                     <img src="https://img.sanishtech.com/u/bcfdd7242970dba2e78b3dca9f4f5a1a.png" alt="Logo" class="shop-logo">
                     <div class="shop-title-wrapper">
@@ -529,12 +563,10 @@
                     </div>
                 </div>
 
-                <!-- Banner Section -->
                 <div class="banner-wrapper">
                     <img src="https://img.sanishtech.com/u/632af75453b5770a7b832247e13aa279.png" alt="Banner" class="shop-banner">
                 </div>
                 
-                <!-- Welcome Marquee -->
                 <div class="welcome-wrapper">
                     <div class="welcome-box">
                         <marquee scrollamount="4" behavior="scroll" direction="left">
@@ -575,7 +607,7 @@
                 </div>
             </div>
 
-            <!-- ================= VIEW 2: ROBLOX STORE (លាក់សិន) ================= -->
+            <!-- ================= VIEW 2: ROBLOX STORE ================= -->
             <div id="roblox-view" class="header-content hidden">
                 <div class="header-top">
                     <img src="https://img.sanishtech.com/u/bcfdd7242970dba2e78b3dca9f4f5a1a.png" alt="Logo" class="shop-logo">
@@ -590,8 +622,16 @@
                     <span class="blue-tick">✔</span>
                 </div>
 
+                <!-- ប្រអប់សារទាក់ទង Admin -->
+                <div class="admin-contact-box">
+                    <span class="admin-text">សូមទាក់ទងទៅកាន់អ្នកគ្រប់គ្រងសុវត្ដិភាពជាងនេះ :</span>
+                    <a href="https://t.me/longzzsmmdigitall" target="_blank" class="tg-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                        Contact Admin @longzzsmmdigitall
+                    </a>
+                </div>
+
                 <div class="packages-grid">
-                    <!-- កញ្ចប់ទាំងអស់ -->
                     <div class="package-card active" onclick="selectPackage(this)"><div class="robux-amount">80 Robux</div><div class="robux-price">$1.00</div></div>
                     <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">160 Robux</div><div class="robux-price">$2.00</div></div>
                     <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">240 Robux</div><div class="robux-price">$3.00</div></div>
@@ -608,7 +648,7 @@
                 </div>
             </div>
 
-            <!-- ================= FOOTER SECTION (លាក់សិន) ================= -->
+            <!-- ================= FOOTER SECTION ================= -->
             <div id="footer-section" class="footer-section hidden">
                 <button id="back-btn" class="back-btn hidden" onclick="showHome()">⬅ ត្រឡប់ក្រោយ (Back)</button>
 
@@ -632,34 +672,28 @@
         let currentView = 'home';
         let selectedMainGame = '';
         
-        // ------------------ មុខងារ Splash Screen (Countdown) ------------------
-        let countdownValue = 20; // ២០ វិនាទី
+        // Countdown Logic
+        let countdownValue = 20; 
         let countdownInterval;
 
         window.onload = function() {
-            // ចាប់ផ្តើមរាប់ថយក្រោយពេលបើក App ភ្លាម
             countdownInterval = setInterval(() => {
                 countdownValue--;
                 document.getElementById('countdown-timer').innerText = countdownValue;
                 
                 if (countdownValue <= 0) {
-                    enterStore(); // ចូលហាងស្វ័យប្រវត្តិពេលដល់ ០
+                    enterStore(); 
                 }
             }, 1000);
         };
 
         function enterStore() {
-            clearInterval(countdownInterval); // បញ្ឈប់ការរាប់
-            
-            // លាក់ទំព័រ Splash 
+            clearInterval(countdownInterval); 
             document.getElementById('splash-view').classList.add('hidden');
-            
-            // បង្ហាញទំព័រ Home និង Footer
             document.getElementById('home-view').classList.remove('hidden');
             document.getElementById('footer-section').classList.remove('hidden');
         }
 
-        // ------------------ មុខងាររើសហ្គេម ------------------
         function selectMainGame(element, gameName) {
             let cards = document.querySelectorAll('#home-view .game-card');
             cards.forEach(c => c.classList.remove('active'));
