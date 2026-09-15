@@ -26,7 +26,7 @@
             overflow: hidden;
         }
 
-        /* ----------------- RGB ភ្លើងរត់ជុំវិញស៊ុមធំ ----------------- */
+        /* ----------------- RGB Border for Main Frame ----------------- */
         .rgb-border-wrapper {
             position: relative;
             width: 92%;
@@ -38,7 +38,11 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.6);
         }
 
-        .rgb-border-wrapper::before, .game-card-wrapper::before, .btn-wrapper::before {
+        /* Shared RGB Animation for Wrapper, Cards, Text Box, and Buttons */
+        .rgb-border-wrapper::before, 
+        .game-card-wrapper::before, 
+        .btn-wrapper::before,
+        .welcome-wrapper::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -54,7 +58,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* ----------------- CONTAINER ខាងក្នុង ----------------- */
+        /* ----------------- Inner Container ----------------- */
         .container {
             position: relative;
             background: #ffffff;
@@ -86,10 +90,41 @@
         .subtitle {
             font-size: 11px;
             color: #64748b;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             font-weight: 500;
             letter-spacing: 1px;
         }
+        
+        /* ----------------- Scrolling Welcome Text with RGB ----------------- */
+        .welcome-wrapper {
+            position: relative;
+            border-radius: 14px;
+            padding: 2.5px;
+            margin-bottom: 45px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.15);
+        }
+        .welcome-box {
+            position: relative;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 12px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #334155;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+        }
+        .highlight-blue {
+            color: #0284c7;
+            font-weight: 700;
+        }
+        .highlight-red {
+            color: #e11d48;
+            font-weight: 700;
+        }
+
         .section-title {
             text-align: left;
             font-size: 13px;
@@ -145,7 +180,7 @@
             background: #f0f9ff;
         }
 
-        /* ----- សញ្ញា Tick (✔) លាក់ជាស្រេច ----- */
+        /* Active Tick (✔) Hidden by Default */
         .active-tick {
             position: absolute;
             top: 6px;
@@ -165,14 +200,13 @@
             transition: all 0.2s ease;
         }
 
-        /* ----- ពេលកាតត្រូវបានចុច (Active State) ----- */
+        /* Active State when a game is selected */
         .game-card.active {
             background: #e0f2fe; 
         }
         .game-card.active .game-name {
             color: #0284c7; 
         }
-        /* បង្ហាញសញ្ញា Tick */
         .game-card.active .active-tick {
             opacity: 1;
             transform: scale(1);
@@ -302,9 +336,15 @@
                 <h2>FOXING CAMBO TOPUP</h2>
                 <div class="subtitle">TOUP GAME STORE 24/7</div>
                 
-                <div class="section-title">
-                    <span>ជ្រើសរើសហ្គេម (Select Game)</span>
-                    <span class="blue-tick">✔</span>
+                <!-- Welcome Marquee Text -->
+                <div class="welcome-wrapper">
+                    <div class="welcome-box">
+                        <marquee scrollamount="4" behavior="scroll" direction="left">
+                            សូមស្វាគមន៌មកកាន់ <span class="highlight-blue">FOXING CAMBO TOPUP !</span> &nbsp; | &nbsp; 
+                            TOPUP GAME STORE IN CAMBODIA ! &nbsp; | &nbsp; 
+                            <span class="highlight-red">FAST SAFE SPEED UP 50+</span>
+                        </marquee>
+                    </div>
                 </div>
 
                 <div class="game-grid">
@@ -397,10 +437,10 @@
 
             <!-- FOOTER SECTION -->
             <div class="footer-section">
-                <!-- ប៊ូតុង Back (បង្ហាញតែពេលនៅหน้า Roblox Store) -->
+                <!-- Back Button -->
                 <button id="back-btn" class="back-btn hidden" onclick="showHome()">⬅ ត្រឡប់ក្រោយ (Back)</button>
 
-                <!-- ប៊ូតុង TOUP NOW (លាក់ជាស្រេច វានឹងលោតមកពេលចុចរើសហ្គេមរួច) -->
+                <!-- Topup Now Button -->
                 <div id="topup-btn-container" class="btn-wrapper hidden">
                     <button class="topup-btn" onclick="handleActionButton()">🛒 ទិញឥឡូវនេះ (TOUP NOW)</button>
                 </div>
@@ -421,32 +461,24 @@
         let currentView = 'home';
         let selectedMainGame = '';
 
-        // មុខងារចុចជ្រើសរើសហ្គេមនៅលើหน้า Home
         function selectMainGame(element, gameName) {
-            // លុប Active ចេញពីកាតហ្គេមទាំងអស់សិន
             let cards = document.querySelectorAll('#home-view .game-card');
             cards.forEach(c => c.classList.remove('active'));
 
-            // ដាក់ Active លើកាតដែលទើបចុច (វានឹងបង្ហាញរង្វង់ Tick ដោយស្វ័យប្រវត្តិ)
             element.querySelector('.game-card').classList.add('active');
             selectedMainGame = gameName;
 
-            // លោតបង្ហាញប៊ូតុង TOUP NOW មកខាងក្រោម
             document.getElementById('topup-btn-container').classList.remove('hidden');
         }
 
-        // មុខងារពេលចុចលើប៊ូតុង TOUP NOW
         function handleActionButton() {
             if (currentView === 'home') {
                 if (selectedMainGame === 'ROBLOX') {
-                    // បើជ្រើសរើស ROBLOX ឱ្យវាចូលទៅหน้า Store របស់ Roblox
                     showRobloxStore();
                 } else {
-                    // បើជ្រើសហ្គេមផ្សេង លោតប្រាប់ថាឆាប់ៗនេះ
                     alert('សេវាកម្ម ' + selectedMainGame + ' នឹងបើកដំណើរការឆាប់ៗនេះ!');
                 }
             } else if (currentView === 'roblox') {
-                // បើកំពុងនៅหน้า Roblox Store លោតប្រាប់ថាអរគុណ
                 alert('សូមអរគុណ! ប្រព័ន្ធកំពុងដំណើរការ...');
             }
         }
@@ -464,13 +496,11 @@
             document.getElementById('home-view').classList.remove('hidden');
             document.getElementById('back-btn').classList.add('hidden');
             
-            // បើកាលនៅหน้า Home ធ្លាប់រើសហ្គេមរួចហើយ គឺនៅតែបង្ហាញប៊ូតុង TOUP NOW ដដែល
             if (selectedMainGame !== '') {
                 document.getElementById('topup-btn-container').classList.remove('hidden');
             }
         }
 
-        // មុខងារជ្រើសរើសកញ្ចប់ Robux ក្នុងหน้า Store
         function selectPackage(element) {
             let cards = document.querySelectorAll('.package-card');
             cards.forEach(c => c.classList.remove('active'));
