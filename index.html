@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ROBLOX TOPUP - FOXING CAMBO</title>
+    <title>FOXING CAMBO TOPUP</title>
     <!-- Telegram Web App SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
@@ -50,13 +50,13 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* ----------------- CONTAINER ខាងក្នុងពេញអេក្រង់ ----------------- */
+        /* ----------------- CONTAINER ខាងក្នុង ----------------- */
         .container {
             position: relative;
             background: #ffffff;
             width: 100%;
             height: 100%;
-            padding: 20px;
+            padding: 25px 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -72,40 +72,72 @@
         }
 
         h2 {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
             color: #111;
         }
         .subtitle {
-            font-size: 11px;
+            font-size: 12px;
             color: #666;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
             letter-spacing: 1px;
         }
         .section-title {
             text-align: left;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: bold;
             color: #16a34a;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
+        /* ----------------- HOME GAME CARDS ----------------- */
+        .game-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .game-card {
+            flex: 1;
+            background: #f8fafc;
+            padding: 24px 8px;
+            border-radius: 16px;
+            border: 2px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .game-card:hover {
+            transform: translateY(-4px);
+            border-color: #6366f1;
+            background: #eef2ff;
+            box-shadow: 0 8px 15px rgba(99, 102, 241, 0.2);
+        }
+        .game-name {
+            font-weight: bold;
+            font-size: 12px;
+            color: #1e293b;
+        }
+
         /* ----------------- ROBLOX PACKAGES GRID ----------------- */
         .packages-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 8px;
             margin-bottom: 15px;
+            text-align: left;
         }
         .package-card {
             background: #f8fafc;
-            padding: 12px 8px;
+            padding: 12px 10px;
             border-radius: 12px;
             border: 2px solid #e2e8f0;
             cursor: pointer;
             transition: all 0.2s ease;
-            text-align: center;
         }
         .package-card:hover, .package-card.active {
             border-color: #6366f1;
@@ -124,17 +156,17 @@
             font-weight: bold;
         }
 
-        /* ----------------- 3D RGB TOUP NOW BUTTON ----------------- */
+        /* ----------------- BUTTONS & FOOTER ----------------- */
         .footer-section {
             width: 100%;
-            padding-top: 10px;
         }
 
+        /* ភ្លើង RGB រត់ជុំវិញប៊ូតុង TOUP NOW */
         .btn-wrapper {
             position: relative;
-            border-radius: 14px;
+            border-radius: 16px;
             padding: 3px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             overflow: hidden;
         }
         .btn-wrapper::before {
@@ -151,8 +183,8 @@
             position: relative;
             background: #1e293b;
             color: #fff;
-            padding: 12px;
-            border-radius: 12px;
+            padding: 14px;
+            border-radius: 14px;
             font-weight: bold;
             font-size: 15px;
             width: 100%;
@@ -164,13 +196,35 @@
             transform: scale(0.98);
         }
 
+        .back-btn {
+            background: #f1f5f9;
+            color: #334155;
+            padding: 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 13px;
+            width: 100%;
+            border: 1px solid #cbd5e1;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: #e2e8f0;
+        }
+
         .footer {
-            font-size: 9px;
+            font-size: 10px;
             color: #888;
             display: flex;
             justify-content: space-between;
             border-top: 1px solid #f1f5f9;
-            padding-top: 8px;
+            padding-top: 10px;
+        }
+
+        /* Hidden class for views */
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
@@ -178,71 +232,98 @@
 
     <div class="rgb-border-wrapper">
         <div class="container">
-            <div class="header-content">
+            
+            <!-- VIEW 1: HOME PAGE (ជ្រើសរើសហ្គេម) -->
+            <div id="home-view" class="header-content">
+                <h2>FOXING CAMBO TOPUP</h2>
+                <div class="subtitle">TOUP GAME STORE 24/7</div>
+                
+                <div class="section-title">✅ ជ្រើសរើសហ្គេម (Select Game)</div>
+
+                <div class="game-grid">
+                    <div class="game-card" onclick="alert('Coming soon!')">
+                        <div class="game-name">MOBILE</div>
+                    </div>
+                    <div class="game-card" onclick="alert('Coming soon!')">
+                        <div class="game-name">FREE FIRE</div>
+                    </div>
+                    <!-- ចុចលើ Roblox វានឹងលោតចូល Store -->
+                    <div class="game-card" onclick="showRobloxStore()">
+                        <div class="game-name" style="color: #6366f1;">ROBLOX</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 2: ROBLOX STORE (លោតមកពេលចុច Roblox) -->
+            <div id="roblox-view" class="header-content hidden">
                 <h2>ROBLOX STORE</h2>
                 <div class="subtitle">FOXING CAMBO TOPUP 24/7</div>
                 
                 <div class="section-title">💎 ជ្រើសរើសកញ្ចប់ Robux</div>
 
                 <div class="packages-grid">
-                    <div class="package-card active">
+                    <div class="package-card active" onclick="selectPackage(this)">
                         <div class="robux-amount">80 Robux</div>
                         <div class="robux-price">$1.00</div>
                     </div>
-                    <div class="package-card">
+                    <div class="package-card" onclick="selectPackage(this)">
                         <div class="robux-amount">160 Robux</div>
                         <div class="robux-price">$2.00</div>
                     </div>
-                    <div class="package-card">
+                    <div class="package-card" onclick="selectPackage(this)">
                         <div class="robux-amount">240 Robux</div>
                         <div class="robux-price">$3.00</div>
                     </div>
-                    <div class="package-card">
+                    <div class="package-card" onclick="selectPackage(this)">
                         <div class="robux-amount">320 Robux</div>
                         <div class="robux-price">$4.00</div>
                     </div>
-                    <div class="package-card">
+                    <div class="package-card" onclick="selectPackage(this)">
                         <div class="robux-amount">400 Robux</div>
                         <div class="robux-price">$5.00</div>
                     </div>
-                    <div class="package-card">
+                    <div class="package-card" onclick="selectPackage(this)">
                         <div class="robux-amount">480 Robux</div>
                         <div class="robux-price">$6.00</div>
                     </div>
-                    <div class="package-card">
+                    <div class="package-card" onclick="selectPackage(this)">
                         <div class="robux-amount">560 Robux</div>
                         <div class="robux-price">$7.00</div>
                     </div>
-                    <div class="package-card">
+                    <div class="package-card" onclick="selectPackage(this)">
                         <div class="robux-amount">640 Robux</div>
                         <div class="robux-price">$8.00</div>
                     </div>
-                    <div class="package-card">
+                    <div class="package-card" onclick="selectPackage(this)">
                         <div class="robux-amount">720 Robux</div>
                         <div class="robux-price">$9.00</div>
                     </div>
-                    <div class="package-card">
+                    <div class="package-card" onclick="selectPackage(this)">
                         <div class="robux-amount">800 Robux</div>
                         <div class="robux-price">$10.00</div>
                     </div>
-                    <div class="package-card">
+                    <div class="package-card" onclick="selectPackage(this)">
                         <div class="robux-amount">880 Robux</div>
                         <div class="robux-price">$11.00</div>
                     </div>
-                    <div class="package-card">
+                    <div class="package-card" onclick="selectPackage(this)">
                         <div class="robux-amount">960 Robux</div>
                         <div class="robux-price">$12.00</div>
                     </div>
-                    <div class="package-card" style="grid-column: span 2;">
+                    <div class="package-card" onclick="selectPackage(this)" style="grid-column: span 2;">
                         <div class="robux-amount">1000 Robux</div>
                         <div class="robux-price">$12.50</div>
                     </div>
                 </div>
             </div>
 
+            <!-- FOOTER SECTION (ប៊ូតុង និង Copyright) -->
             <div class="footer-section">
+                <!-- ប៊ូតុង Back សម្រាប់ត្រឡប់ក្រោយ (លេចឡើងពេលនៅหน้า Roblox) -->
+                <button id="back-btn" class="back-btn hidden" onclick="showHome()">⬅ ត្រឡប់ក្រោយ (Back)</button>
+
                 <div class="btn-wrapper">
-                    <button class="topup-btn">🛒 ាទិញឥឡូវនេះ (TOUP NOW)</button>
+                    <button class="topup-btn" onclick="alert('សូមអរគុណ! ប្រព័ន្ធកំពុងដំណើរការ...')">🛒 ទិញឥឡូវនេះ (TOUP NOW)</button>
                 </div>
 
                 <div class="footer">
@@ -250,12 +331,34 @@
                     <span>All Right Reserved</span>
                 </div>
             </div>
+
         </div>
     </div>
 
     <script>
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
+
+        // មុខងារបង្ហាញหน้า Roblox Store
+        function showRobloxStore() {
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('roblox-view').classList.remove('hidden');
+            document.getElementById('back-btn').classList.remove('hidden');
+        }
+
+        // មុខងារត្រឡប់មកหน้า Home វិញ
+        function showHome() {
+            document.getElementById('roblox-view').classList.add('hidden');
+            document.getElementById('home-view').classList.remove('hidden');
+            document.getElementById('back-btn').classList.add('hidden');
+        }
+
+        // មុខងារជ្រើសរើសកញ្ចប់ (Active state)
+        function selectPackage(element) {
+            let cards = document.querySelectorAll('.package-card');
+            cards.forEach(c => c.classList.remove('active'));
+            element.classList.add('active');
+        }
     </script>
 </body>
 </html>
