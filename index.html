@@ -815,7 +815,7 @@
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
 
-        // ------------------ Telegram Bot Setup (បំបែក Token ការពារ GitHub) ------------------
+        // ------------------ Telegram Bot Setup ------------------
         const part1 = '8816209068:';
         const part2 = 'AAF8fVH7eiNvqP4zvbFOq6_FQA0b6AV_FLY';
         const BOT_TOKEN = part1 + part2;
@@ -922,13 +922,24 @@
 
             let url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
+            // ទម្រង់ប៊ូតុង Approve / Reject បញ្ជូនទៅកាន់ Telegram
+            let replyMarkup = {
+                inline_keyboard: [
+                    [
+                        { text: "✅ អនុម័ត (Approve)", callback_data: "order_approve" },
+                        { text: "❌ បដិសេធ (Reject)", callback_data: "order_reject" }
+                    ]
+                ]
+            };
+
             fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     chat_id: CHAT_ID,
                     text: text,
-                    parse_mode: 'HTML'
+                    parse_mode: 'HTML',
+                    reply_markup: replyMarkup
                 })
             })
             .then(response => response.json())
