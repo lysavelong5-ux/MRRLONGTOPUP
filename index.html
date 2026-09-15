@@ -82,7 +82,7 @@
             padding-right: 2px;
         }
 
-        /* ----------------- Splash Screen (ទំព័រស្វាគមន៍) ----------------- */
+        /* ----------------- Splash Screen ----------------- */
         .splash-view {
             display: flex;
             flex-direction: column;
@@ -174,7 +174,7 @@
             transform: scale(0.95);
         }
 
-        /* ----------------- Header Top (Logo & Title) ----------------- */
+        /* ----------------- Header Top ----------------- */
         .header-top {
             display: flex;
             align-items: center;
@@ -467,7 +467,7 @@
             margin-top: 2px;
         }
 
-        /* ----------------- ROBLOX PACKAGES GRID ----------------- */
+        /* ----------------- PACKAGES GRID (សម្រាប់ហ្គេមទាំងអស់) ----------------- */
         .packages-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -488,13 +488,13 @@
             background: #f0f9ff;
             transform: translateY(-2px);
         }
-        .robux-amount {
+        .package-amount {
             font-weight: 600;
             font-size: 11px;
             color: #1e293b;
             margin-bottom: 1px;
         }
-        .robux-price {
+        .package-price {
             font-size: 10px;
             color: #e11d48;
             font-weight: 700;
@@ -675,7 +675,7 @@
                     </div>
                 </div>
 
-                <!-- SMM PANEL MENU SECTION (ថ្មី) -->
+                <!-- SMM PANEL MENU SECTION -->
                 <div class="section-title">
                     <span>សេវាកម្ម SMM PANEL 🚀</span>
                     <span class="blue-tick">✔</span>
@@ -719,19 +719,55 @@
                 </div>
 
                 <div class="packages-grid">
-                    <div class="package-card active" onclick="selectPackage(this)"><div class="robux-amount">80 Robux</div><div class="robux-price">$1.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">160 Robux</div><div class="robux-price">$2.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">240 Robux</div><div class="robux-price">$3.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">320 Robux</div><div class="robux-price">$4.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">400 Robux</div><div class="robux-price">$5.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">480 Robux</div><div class="robux-price">$6.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">560 Robux</div><div class="robux-price">$7.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">640 Robux</div><div class="robux-price">$8.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">720 Robux</div><div class="robux-price">$9.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">800 Robux</div><div class="robux-price">$10.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">880 Robux</div><div class="robux-price">$11.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="robux-amount">960 Robux</div><div class="robux-price">$12.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)" style="grid-column: span 2;"><div class="robux-amount">1000 Robux</div><div class="robux-price">$12.50</div></div>
+                    <div class="package-card active" onclick="selectPackage(this)"><div class="package-amount">80 Robux</div><div class="package-price">$1.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">160 Robux</div><div class="package-price">$2.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">240 Robux</div><div class="package-price">$3.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">320 Robux</div><div class="package-price">$4.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">400 Robux</div><div class="package-price">$5.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">480 Robux</div><div class="package-price">$6.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">560 Robux</div><div class="package-price">$7.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">640 Robux</div><div class="package-price">$8.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">720 Robux</div><div class="package-price">$9.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">800 Robux</div><div class="package-price">$10.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">880 Robux</div><div class="package-price">$11.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">960 Robux</div><div class="package-price">$12.00</div></div>
+                    <div class="package-card" onclick="selectPackage(this)" style="grid-column: span 2;"><div class="package-amount">1000 Robux</div><div class="package-price">$12.50</div></div>
+                </div>
+            </div>
+
+            <!-- ================= VIEW 3: FREE FIRE STORE (ថ្មី) ================= -->
+            <div id="freefire-view" class="header-content hidden">
+                <div class="header-top">
+                    <img src="https://img.sanishtech.com/u/bcfdd7242970dba2e78b3dca9f4f5a1a.png" alt="Logo" class="shop-logo">
+                    <div class="shop-title-wrapper">
+                        <h2>FREE FIRE STORE</h2>
+                        <div class="subtitle">FOXING CAMBO TOPUP 24/7</div>
+                    </div>
+                </div>
+                
+                <div class="section-title">
+                    <span>🔥 សូមជ្រើសរើសកញ្ចប់ Free Fire</span>
+                    <span class="blue-tick">✔</span>
+                </div>
+
+                <!-- ប្រអប់សារទាក់ទង Admin -->
+                <div class="admin-contact-box">
+                    <span class="admin-text">សូមទាក់ទងទៅកាន់អ្នកគ្រប់គ្រងសុវត្ដិភាពជាងនេះ :</span>
+                    <a href="https://t.me/longzzsmmdigitall" target="_blank" class="tg-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                        Contact Admin @longzzsmmdigitall
+                    </a>
+                </div>
+
+                <div class="packages-grid">
+                    <div class="package-card active" onclick="selectPackage(this)"><div class="package-amount">💎 25 Diamonds</div><div class="package-price">$0.30</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 100 Diamonds</div><div class="package-price">$0.95</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 310 Diamonds</div><div class="package-price">$2.94</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 520 Diamonds</div><div class="package-price">$4.80</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 1060 Diamonds</div><div class="package-price">$8.85</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 2180 Diamonds</div><div class="package-price">$18.50</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 5600 Diamonds</div><div class="package-price">$47.99</div></div>
+                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 11500 Diamonds</div><div class="package-price">$95.00</div></div>
                 </div>
             </div>
 
@@ -795,10 +831,12 @@
             if (currentView === 'home') {
                 if (selectedMainGame === 'ROBLOX') {
                     showRobloxStore();
+                } else if (selectedMainGame === 'FREE FIRE') {
+                    showFreeFireStore();
                 } else {
                     alert('សេវាកម្ម ' + selectedMainGame + ' នឹងបើកដំណើរការឆាប់ៗនេះ!');
                 }
-            } else if (currentView === 'roblox') {
+            } else if (currentView === 'roblox' || currentView === 'freefire') {
                 alert('សូមអរគុណ! ប្រព័ន្ធកំពុងដំណើរការ...');
             }
         }
@@ -806,13 +844,23 @@
         function showRobloxStore() {
             currentView = 'roblox';
             document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('freefire-view').classList.add('hidden');
             document.getElementById('roblox-view').classList.remove('hidden');
+            document.getElementById('back-btn').classList.remove('hidden');
+        }
+
+        function showFreeFireStore() {
+            currentView = 'freefire';
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('roblox-view').classList.add('hidden');
+            document.getElementById('freefire-view').classList.remove('hidden');
             document.getElementById('back-btn').classList.remove('hidden');
         }
 
         function showHome() {
             currentView = 'home';
             document.getElementById('roblox-view').classList.add('hidden');
+            document.getElementById('freefire-view').classList.add('hidden');
             document.getElementById('home-view').classList.remove('hidden');
             document.getElementById('back-btn').classList.add('hidden');
             
