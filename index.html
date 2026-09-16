@@ -12,116 +12,220 @@
             font-family: 'Kantumruy Pro', sans-serif, Arial;
         }
         body {
-            background-color: #f4f6f9;
+            background-color: #0f172a;
             color: #333;
             display: flex;
             justify-content: center;
-            padding: 15px;
+            padding: 10px;
         }
         .container {
             width: 100%;
             max-width: 450px;
             background: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            padding: 20px;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            padding: 15px;
             overflow: hidden;
         }
-        /* Header Title */
-        .app-title {
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #111;
-        }
-        /* Main Banner Box */
-        .main-banner {
-            width: 100%;
-            height: 150px;
-            background: #e2e8f0;
-            border-radius: 15px;
+        /* Header Profile */
+        .header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-size: 16px;
-            font-weight: 500;
+            gap: 12px;
             margin-bottom: 15px;
         }
-        /* Sub Banner Line */
-        .sub-banner-line {
+        .header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #f97316;
+        }
+        .header-text h1 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #111;
+        }
+        .header-text p {
+            font-size: 12px;
+            color: #64748b;
+        }
+        /* Main Banner */
+        .main-banner {
             width: 100%;
-            height: 12px;
-            background: #e2e8f0;
-            border-radius: 6px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .main-banner img {
+            width: 100%;
+            display: block;
+        }
+        /* Notice Box */
+        .notice-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            font-size: 13px;
+            color: #2563eb;
+            font-weight: 500;
             margin-bottom: 20px;
         }
-        /* Section Title */
+        /* Section Titles */
         .section-title {
-            font-size: 16px;
-            font-weight: bold;
-            font-style: italic;
-            margin-bottom: 12px;
-            color: #222;
-        }
-        /* Game Topup Cards Grid */
-        .grid-cards {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-        .card-item {
-            flex: 1;
-            height: 70px;
-            background: #cbd5e1;
-            border-radius: 12px;
-        }
-        /* Service Buttons */
-        .service-btn {
-            width: 100%;
-            padding: 15px;
-            background: #cbd5e1;
-            border: none;
-            border-radius: 12px;
             font-size: 15px;
             font-weight: bold;
             color: #1e293b;
-            text-align: center;
             margin-bottom: 12px;
-            cursor: pointer;
-            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
-        .service-btn:active {
-            background: #94a3b8;
+        /* Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .game-card {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 12px 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .game-card:active {
+            transform: scale(0.95);
+        }
+        .game-card img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 8px;
+        }
+        .game-card span {
+            font-size: 11px;
+            font-weight: bold;
+            color: #1e293b;
+            display: block;
+        }
+        /* Digital Items Banner */
+        .digital-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        .digital-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .digital-left img {
+            width: 35px;
+            height: 35px;
+        }
+        .digital-info h3 {
+            font-size: 13px;
+            font-weight: bold;
+            color: #1e293b;
+        }
+        .digital-info p {
+            font-size: 11px;
+            color: #64748b;
+        }
+        .arrow-icon {
+            color: #2563eb;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 15px;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- ក្បាលទំព័រ -->
-        <div class="app-title">គំរូថ្មី</div>
-
-        <!-- ផ្ទាំងបដាធំ (Banner) -->
-        <div class="main-banner">Banner Image / Promos</div>
-
-        <!-- ខ្សែបន្ទាត់រំលេច -->
-        <div class="sub-banner-line"></div>
-
-        <!-- ចំណងជើង Game topup -->
-        <div class="section-title">Game topup</div>
-
-        <!-- ប្រអប់ហ្គេមតូចៗ -->
-        <div class="grid-cards">
-            <div class="card-item"></div>
-            <div class="card-item"></div>
-            <div class="card-item"></div>
+        <!-- Header -->
+        <div class="header">
+            <img src="https://i.imgur.com/7bQyQ1A.png" alt="Logo">
+            <div class="header-text">
+                <h1>FOXING CAMBO TOPUP</h1>
+                <p>TOUP GAME STORE 24/7</p>
+            </div>
         </div>
 
-        <!-- ប៊ូតុងសេវាកម្មផ្សេងៗ -->
-        <button class="service-btn" onclick="alert('ចូលទៅកាន់ អាខោន Digital')">អាខោន Digital</button>
-        <button class="service-btn" onclick="alert('ចូលទៅកាន់ សេវាកម្មបូសឆែក')">សេវាកម្មបូសឆែក</button>
+        <!-- Main Banner -->
+        <div class="main-banner">
+            <img src="https://i.imgur.com/YourBannerImageHere.jpg" alt="Banner" id="bannerImg">
+        </div>
+
+        <!-- Notice -->
+        <div class="notice-box">
+            សូមស្វាគមន៍មកកាន់ FOXING CAMBO TOPUP
+        </div>
+
+        <!-- Section: Select Game -->
+        <div class="section-title">
+            ជ្រើសរើសហ្គេម (Select Game) ✓
+        </div>
+        <div class="games-grid">
+            <div class="game-card" onclick="alert('Mobile Legends')">
+                <img src="https://i.imgur.com/mlbb.png" alt="MLBB">
+                <span>MOBILE</span>
+            </div>
+            <div class="game-card" onclick="alert('Free Fire')">
+                <img src="https://i.imgur.com/ff.png" alt="FF">
+                <span>FREE FIRE</span>
+            </div>
+            <div class="game-card" onclick="alert('Roblox')">
+                <img src="https://i.imgur.com/roblox.png" alt="Roblox">
+                <span>ROBLOX</span>
+            </div>
+        </div>
+
+        <!-- Section: Digital Items -->
+        <div class="section-title">
+            ទំនិញអាខោន Digital 🎁 ✓
+        </div>
+        <div class="digital-box" onclick="alert('Digital Accounts')">
+            <div class="digital-left">
+                <span style="font-size: 24px;">🛍️</span>
+                <div class="digital-info">
+                    <h3>ទំនិញអាខោន DIGITAL</h3>
+                    <p>Netflix, Spotify, YouTube & More...</p>
+                </div>
+            </div>
+            <div class="arrow-icon">→</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <span>SEAVLONG GROUP 2026©</span>
+            <span>All Right Reserved</span>
+        </div>
     </div>
 
 </body>
