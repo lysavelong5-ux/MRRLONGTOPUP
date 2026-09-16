@@ -80,6 +80,7 @@
             overflow-y: auto;
             max-height: calc(100% - 60px);
             padding-right: 2px;
+            padding-bottom: 20px; /* ទុកចន្លោះខាងក្រោមបន្តិចងាយស្រួលរមូរ */
         }
 
         /* ----------------- Splash Screen ----------------- */
@@ -282,6 +283,7 @@
             font-weight: 700;
             color: #0f172a;
             margin-bottom: 10px;
+            margin-top: 15px; /* បន្ថែមគម្លាតខាងលើបន្តិច */
             display: flex;
             align-items: center;
             gap: 5px;
@@ -355,6 +357,41 @@
         .game-input::placeholder {
             color: #94a3b8;
             font-weight: 500;
+        }
+
+        /* ----------------- Upload Receipt Section (ថ្មី) ----------------- */
+        .upload-wrapper {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        .upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 11px;
+            font-weight: 600;
+            color: #64748b;
+            text-align: center;
+        }
+        .upload-label:hover {
+            background: #f1f5f9;
+            border-color: #38bdf8;
+            color: #0284c7;
+        }
+        .upload-label.uploaded {
+            background: #f0fdf4;
+            border-color: #10b981;
+            color: #059669;
+        }
+        .upload-input {
+            display: none;
         }
 
         /* ----------------- 3D RGB GAME CARDS ----------------- */
@@ -535,6 +572,7 @@
             width: 100%;
             margin-top: auto;
             padding-top: 10px;
+            background: #fff; /* បន្ថែម background ការពារធ្លាយអក្សរពីក្រោយ */
         }
 
         .btn-wrapper {
@@ -760,6 +798,17 @@
                     <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">960 Robux</div><div class="package-price">$12.00</div></div>
                     <div class="package-card" onclick="selectPackage(this)" style="grid-column: span 2;"><div class="package-amount">1000 Robux</div><div class="package-price">$12.50</div></div>
                 </div>
+
+                <!-- កន្លែង Upload វិក្កយបត្រ (Roblox) -->
+                <div class="section-title">
+                    <span>🧾 បញ្ជូលវិក្កយបត្របង់ប្រាក់ (Receipt)</span>
+                </div>
+                <div class="upload-wrapper">
+                    <label for="roblox-receipt" id="roblox-receipt-label" class="upload-label">
+                        <span>📸 ចុចទីនេះដើម្បី Upload វិក្កយបត្រ</span>
+                    </label>
+                    <input type="file" id="roblox-receipt" class="upload-input" accept="image/*" onchange="previewReceipt(this, 'roblox-receipt-label')">
+                </div>
             </div>
 
             <!-- ================= VIEW 3: FREE FIRE STORE ================= -->
@@ -791,6 +840,17 @@
                     <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 2180 Diamonds</div><div class="package-price">$18.50</div></div>
                     <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 5600 Diamonds</div><div class="package-price">$47.99</div></div>
                     <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 11500 Diamonds</div><div class="package-price">$95.00</div></div>
+                </div>
+
+                <!-- កន្លែង Upload វិក្កយបត្រ (Free Fire) -->
+                <div class="section-title">
+                    <span>🧾 បញ្ជូលវិក្កយបត្របង់ប្រាក់ (Receipt)</span>
+                </div>
+                <div class="upload-wrapper">
+                    <label for="freefire-receipt" id="freefire-receipt-label" class="upload-label">
+                        <span>📸 ចុចទីនេះដើម្បី Upload វិក្កយបត្រ</span>
+                    </label>
+                    <input type="file" id="freefire-receipt" class="upload-input" accept="image/*" onchange="previewReceipt(this, 'freefire-receipt-label')">
                 </div>
             </div>
 
@@ -855,6 +915,21 @@
             document.getElementById('topup-btn-container').classList.remove('hidden');
         }
 
+        // Preview Receipt Image Text
+        function previewReceipt(input, labelId) {
+            let label = document.getElementById(labelId);
+            if (input.files && input.files[0]) {
+                let fileName = input.files[0].name;
+                // កាត់ឈ្មោះរូបកុំឱ្យវែងពេក
+                if(fileName.length > 20) fileName = fileName.substring(0, 17) + '...';
+                label.innerHTML = `<span>✅ រូបភាពរួចរាល់: ${fileName}</span>`;
+                label.classList.add('uploaded');
+            } else {
+                label.innerHTML = `<span>📸 ចុចទីនេះដើម្បី Upload វិក្កយបត្រ</span>`;
+                label.classList.remove('uploaded');
+            }
+        }
+
         function handleActionButton() {
             if (currentView === 'home') {
                 if (selectedMainGame === 'ROBLOX') {
@@ -897,6 +972,14 @@
             let pkgAmount = activePkg.querySelector('.package-amount').innerText;
             let pkgPrice = activePkg.querySelector('.package-price').innerText;
 
+            // ចាប់យករូបភាពវិក្កយបត្រ
+            let receiptInput = document.getElementById(`${currentView}-receipt`);
+            let file = receiptInput.files[0];
+            if (!file) {
+                alert('សូមបញ្ជូលរូបភាពវិក្កយបត្របង់ប្រាក់សិន!');
+                return;
+            }
+
             let tgUser = "Unknown Customer";
             if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user) {
                 let userObj = window.Telegram.WebApp.initDataUnsafe.user;
@@ -920,9 +1003,9 @@
             actionBtn.innerText = 'កំពុងបញ្ជូនទិន្នន័យ...';
             actionBtn.disabled = true;
 
-            let url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+            // ប្រើ sendPhoto ព្រោះមានរូបភាព
+            let url = `https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`;
 
-            // ទម្រង់ប៊ូតុង Approve / Reject បញ្ជូនទៅកាន់ Telegram
             let replyMarkup = {
                 inline_keyboard: [
                     [
@@ -932,24 +1015,33 @@
                 ]
             };
 
+            // បង្កើត FormData សម្រាប់បញ្ជូនរូបភាព និងអត្ថបទ
+            let formData = new FormData();
+            formData.append('chat_id', CHAT_ID);
+            formData.append('photo', file);
+            formData.append('caption', text);
+            formData.append('parse_mode', 'HTML');
+            formData.append('reply_markup', JSON.stringify(replyMarkup));
+
             fetch(url, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: CHAT_ID,
-                    text: text,
-                    parse_mode: 'HTML',
-                    reply_markup: replyMarkup
-                })
+                body: formData
             })
             .then(response => response.json())
             .then(data => {
                 if(data.ok) {
                     alert('✅ ការបញ្ជាទិញទទួលបានជោគជ័យ! សូមរង់ចាំការដំណើរការពី Admin...');
+                    
+                    // លុបទិន្នន័យចេញពីប្រអប់ពេលបញ្ជូនរួច
                     if (currentView === 'freefire') {
                         document.getElementById('freefire-id-1').value = '';
                         document.getElementById('freefire-id-2').value = '';
                     }
+                    document.getElementById('roblox-receipt').value = '';
+                    document.getElementById('freefire-receipt').value = '';
+                    previewReceipt(document.getElementById('roblox-receipt'), 'roblox-receipt-label');
+                    previewReceipt(document.getElementById('freefire-receipt'), 'freefire-receipt-label');
+                    
                     showHome(); 
                 } else {
                     alert('❌ មានបញ្ហាក្នុងការបញ្ជូនទិន្នន័យ សូមសាកល្បងម្ដងទៀត!');
