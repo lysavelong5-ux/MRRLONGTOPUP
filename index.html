@@ -2,1008 +2,127 @@
 <html lang="km">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FOXING CAMBO TOPUP</title>
-    <!-- Google Font (Poppins) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Telegram Web App SDK -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Kantumruy Pro', sans-serif, Arial;
         }
-
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #0b0f19;
-            width: 100vw;
-            height: 100vh;
+            background-color: #f4f6f9;
+            color: #333;
             display: flex;
             justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        /* ----------------- RGB Border for Main Frame ----------------- */
-        .rgb-border-wrapper {
-            position: relative;
-            width: 92%;
-            max-width: 400px;
-            height: 86vh;
-            padding: 3px;
-            border-radius: 22px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-        }
-
-        /* Shared RGB Animation */
-        .rgb-border-wrapper::before, 
-        .game-card-wrapper::before, 
-        .digital-card-wrapper::before,
-        .btn-wrapper::before,
-        .welcome-wrapper::before,
-        .splash-logo-wrapper::before,
-        .qr-loading-icon::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, #ff0055, #38bdf8, #00ff66, #ffff00, #ff0055);
-            animation: rgb-rotate 3s linear infinite;
-        }
-
-        @keyframes rgb-rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* ----------------- Inner Container ----------------- */
-        .container {
-            position: relative;
-            background: #ffffff;
-            width: 100%;
-            height: 100%;
-            padding: 20px 14px;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            z-index: 1;
-            text-align: center;
-        }
-
-        .header-content {
-            width: 100%;
-            overflow-y: auto;
-            max-height: calc(100% - 60px);
-            padding-right: 2px;
-            padding-bottom: 20px;
-        }
-
-        /* ----------------- Splash Screen & Loading View ----------------- */
-        .splash-view {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            width: 100%;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .splash-logo-wrapper {
-            position: relative;
-            border-radius: 50%;
-            padding: 4px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
-        }
-        
-        .splash-logo {
-            position: relative;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            z-index: 1;
-            background: #fff;
-        }
-
-        .qr-loading-icon {
-            position: relative;
-            border-radius: 16px;
-            padding: 4px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            width: 80px;
-            height: 80px;
-        }
-        .qr-loading-icon img {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            border-radius: 12px;
-            object-fit: cover;
-            z-index: 1;
-            background: #fff;
-        }
-
-        .splash-title {
-            font-size: 16px;
-            font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .splash-credits {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
             padding: 15px;
+        }
+        .container {
             width: 100%;
-            font-size: 11px;
-            font-weight: 600;
-            color: #334155;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            text-align: left;
+            max-width: 450px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 20px;
+            overflow: hidden;
         }
-        .splash-credits span {
-            color: #0284c7;
-            font-weight: 700;
+        /* Header Title */
+        .app-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #111;
         }
-
-        .splash-timer {
-            font-size: 12px;
-            font-weight: 600;
-            color: #64748b;
-            margin-bottom: 15px;
-        }
-        .splash-countdown {
-            font-size: 24px;
-            font-weight: 800;
-            color: #e11d48;
-            text-shadow: 0 2px 5px rgba(225, 29, 72, 0.2);
-        }
-
-        .skip-btn {
-            background: #eef2ff;
-            color: #4f46e5;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 11px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            transition: 0.2s;
-            margin-top: 10px;
-        }
-        .skip-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* ----------------- Header Top ----------------- */
-        .header-top {
+        /* Main Banner Box */
+        .main-banner {
+            width: 100%;
+            height: 150px;
+            background: #e2e8f0;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-        .shop-logo {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #38bdf8;
-            box-shadow: 0 2px 8px rgba(56, 189, 248, 0.4);
-        }
-        .shop-title-wrapper {
-            text-align: left;
-        }
-        h2 {
-            font-size: 17px;
-            font-weight: 800;
-            margin-bottom: 0px;
-            color: #0f172a;
-            letter-spacing: 0.5px;
-        }
-        .subtitle {
-            font-size: 10px;
             color: #64748b;
+            font-size: 16px;
             font-weight: 500;
-            letter-spacing: 1px;
-        }
-
-        /* ----------------- Banner & Marquee ----------------- */
-        .banner-wrapper {
-            position: relative;
-            width: 100%;
-            border-radius: 14px;
-            padding: 3px;
-            margin-bottom: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-        .banner-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -150%;
-            left: -50%;
-            width: 200%;
-            height: 400%;
-            background: conic-gradient(from 0deg, #0066ff, #ff0055, #ffff00, #ff0055, #0066ff);
-            animation: banner-glow-bounce 3.5s linear infinite alternate;
-            z-index: 0;
-        }
-        .shop-banner {
-            position: relative;
-            width: 100%;
-            display: block;
-            object-fit: cover;
-            border-radius: 11px;
-            background: #fff;
-            z-index: 1;
-        }
-        
-        .welcome-wrapper {
-            position: relative;
-            border-radius: 12px;
-            padding: 2.5px;
             margin-bottom: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.15);
         }
-        .welcome-box {
-            position: relative;
-            background: #ffffff;
-            border-radius: 10px;
-            padding: 10px 8px;
-            font-size: 11px;
-            font-weight: 600;
-            color: #334155;
-            z-index: 1;
-            display: flex;
-            align-items: center;
+        /* Sub Banner Line */
+        .sub-banner-line {
+            width: 100%;
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 6px;
+            margin-bottom: 20px;
         }
-        .highlight-blue { color: #0284c7; font-weight: 700; }
-        .highlight-red { color: #e11d48; font-weight: 700; }
-
-        /* ----------------- Section Titles ----------------- */
+        /* Section Title */
         .section-title {
-            text-align: left;
-            font-size: 13px;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 10px;
-            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 12px;
+            color: #222;
+        }
+        /* Game Topup Cards Grid */
+        .grid-cards {
             display: flex;
-            align-items: center;
-            gap: 5px;
+            gap: 10px;
+            margin-bottom: 25px;
         }
-        .blue-tick { color: #38bdf8; font-size: 14px; vertical-align: middle; }
-
-        /* ----------------- Telegram Admin Contact Box ----------------- */
-        .admin-contact-box {
-            background: rgba(56, 189, 248, 0.08);
-            border: 1px dashed #38bdf8;
-            border-radius: 10px;
-            padding: 12px;
-            margin-bottom: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
+        .card-item {
+            flex: 1;
+            height: 70px;
+            background: #cbd5e1;
+            border-radius: 12px;
         }
-        .admin-text { font-size: 11px; font-weight: 600; color: #1e293b; }
-        .tg-btn {
-            background: #0088cc;
-            color: #fff;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 4px 6px rgba(0, 136, 204, 0.25);
-            transition: 0.2s;
-        }
-        .tg-btn:active { transform: scale(0.95); }
-
-        /* ----------------- Input Game ID Fields ----------------- */
-        .input-container {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-        .game-input {
+        /* Service Buttons */
+        .service-btn {
             width: 100%;
-            padding: 12px 14px;
-            border-radius: 10px;
-            border: 1.5px solid #cbd5e1;
-            background: #f8fafc;
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            color: #0f172a;
-            outline: none;
-            transition: all 0.2s ease;
+            padding: 15px;
+            background: #cbd5e1;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #1e293b;
+            text-align: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
         }
-        .game-input:focus {
-            border-color: #38bdf8;
-            background: #ffffff;
-            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+        .service-btn:active {
+            background: #94a3b8;
         }
-        .game-input::placeholder { color: #94a3b8; font-weight: 500; }
-
-        /* ----------------- 3D RGB GAME CARDS ----------------- */
-        .game-grid { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 15px; }
-        .game-card-wrapper {
-            position: relative; flex: 1; border-radius: 14px; padding: 2.5px;
-            overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.08); transition: transform 0.2s ease;
-        }
-        .game-card-wrapper:hover { transform: translateY(-3px); }
-        .game-card {
-            position: relative; background: #f8fafc; padding: 12px 4px; border-radius: 12px; cursor: pointer;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; z-index: 1; transition: all 0.2s ease;
-        }
-        .game-card:hover { background: #f0f9ff; }
-        .game-logo { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid #e2e8f0; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: all 0.2s ease; }
-        .active-tick {
-            position: absolute; top: 6px; right: 6px; width: 16px; height: 16px; background: #38bdf8; color: white;
-            border-radius: 50%; font-size: 9px; font-weight: bold; display: flex; align-items: center; justify-content: center;
-            opacity: 0; transform: scale(0.5); transition: all 0.2s ease; z-index: 2;
-        }
-        .game-card.active { background: #e0f2fe; }
-        .game-card.active .game-name { color: #0284c7; }
-        .game-card.active .game-logo { border-color: #38bdf8; }
-        .game-card.active .active-tick { opacity: 1; transform: scale(1); }
-        .game-name { font-weight: 700; font-size: 11px; color: #1e293b; transition: color 0.2s ease; }
-
-        /* ----------------- LIST/MENU CARDS ----------------- */
-        .digital-card-wrapper {
-            position: relative; width: 100%; border-radius: 14px; padding: 2.5px; overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08); transition: transform 0.2s ease; margin-bottom: 15px;
-        }
-        .digital-card-wrapper:hover { transform: translateY(-3px); }
-        .digital-card {
-            position: relative; background: #f8fafc; padding: 12px 15px; border-radius: 12px; cursor: pointer;
-            display: flex; align-items: center; justify-content: space-between; z-index: 1; transition: all 0.2s ease;
-        }
-        .digital-card:hover { background: #f0f9ff; }
-        .digital-icon { font-size: 26px; }
-        .digital-info { text-align: left; flex: 1; margin-left: 12px; }
-        .digital-title { font-weight: 700; font-size: 12px; color: #1e293b; }
-        .digital-desc { font-size: 9px; color: #64748b; font-weight: 500; margin-top: 2px; }
-
-        /* ----------------- PACKAGES GRID ----------------- */
-        .packages-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 10px; text-align: left; }
-        .package-card {
-            background: #f8fafc; padding: 8px 10px; border-radius: 10px; border: 1.5px solid #e2e8f0;
-            cursor: pointer; transition: all 0.2s ease;
-        }
-        .package-card:hover, .package-card.active { border-color: #38bdf8; background: #f0f9ff; transform: translateY(-2px); }
-        .package-amount { font-weight: 600; font-size: 11px; color: #1e293b; margin-bottom: 1px; }
-        .package-price { font-size: 10px; color: #e11d48; font-weight: 700; }
-
-        /* ----------------- Payment View Elements ----------------- */
-        .order-summary {
-            background: #f0f9ff; border: 1.5px solid #38bdf8; border-radius: 12px; padding: 15px;
-            margin-bottom: 15px; text-align: left;
-        }
-        .summary-item { font-size: 12px; color: #1e293b; font-weight: 600; margin-bottom: 6px; display: flex; justify-content: space-between;}
-        .summary-item span { color: #0284c7; font-weight: 700;}
-
-        .qr-wrapper {
-            background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 15px;
-            margin-bottom: 15px; display: flex; flex-direction: column; align-items: center; gap: 10px;
-        }
-        .qr-image {
-            width: 180px; height: 180px; border-radius: 10px; object-fit: contain;
-            border: 2px solid #38bdf8; padding: 5px; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        .qr-text { font-size: 10px; font-weight: 600; color: #e11d48; text-align: center; }
-
-        .upload-wrapper { margin-bottom: 15px; width: 100%; }
-        .upload-label {
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 12px; padding: 14px;
-            cursor: pointer; transition: all 0.2s ease; font-size: 11px; font-weight: 600; color: #64748b; text-align: center;
-        }
-        .upload-label:hover { background: #f1f5f9; border-color: #38bdf8; color: #0284c7; }
-        .upload-label.uploaded { background: #f0fdf4; border-color: #10b981; color: #059669; }
-        .upload-input { display: none; }
-
-        /* ----------------- BUTTONS & FOOTER ----------------- */
-        .footer-section { width: 100%; margin-top: auto; padding-top: 10px; background: #fff; }
-        .btn-wrapper {
-            position: relative; border-radius: 12px; padding: 2.5px; margin-bottom: 6px; overflow: hidden;
-            box-shadow: 0 6px 12px rgba(56, 189, 248, 0.2); animation: popUp 0.3s ease-out; 
-        }
-        @keyframes popUp {
-            0% { opacity: 0; transform: translateY(15px) scale(0.95); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .topup-btn {
-            position: relative; background: #0f172a; color: #fff; padding: 12px; border-radius: 10px;
-            font-weight: 700; font-size: 13px; width: 100%; border: none; cursor: pointer; z-index: 1;
-            font-family: 'Poppins', sans-serif; letter-spacing: 0.5px;
-        }
-        .topup-btn:active { transform: scale(0.98); }
-        .topup-btn:disabled { background: #475569; cursor: not-allowed; }
-
-        .back-btn {
-            background: #f1f5f9; color: #334155; padding: 10px; border-radius: 10px; font-weight: 600;
-            font-size: 12px; width: 100%; border: 1px solid #cbd5e1; cursor: pointer; margin-bottom: 6px;
-            transition: 0.2s; font-family: 'Poppins', sans-serif;
-        }
-        .back-btn:hover { background: #e2e8f0; }
-
-        .footer { font-size: 10px; color: #94a3b8; display: flex; justify-content: space-between; border-top: 1px solid #f1f5f9; padding-top: 6px; font-weight: 500; }
-        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-    <div class="rgb-border-wrapper">
-        <div class="container">
-            
-            <!-- ================= VIEW 0: SPLASH SCREEN (ចូលដំបូង) ================= -->
-            <div id="splash-view" class="splash-view">
-                <div class="splash-logo-wrapper">
-                    <img src="https://img.sanishtech.com/u/bcfdd7242970dba2e78b3dca9f4f5a1a.png" alt="Logo" class="splash-logo">
-                </div>
-                
-                <div class="splash-title">
-                    សូមស្វាគមន៌មកកាន់<br>
-                    <span style="color: #0284c7;">FOXING CAMBO TOPUP 24/7</span>
-                </div>
+    <div class="container">
+        <!-- ក្បាលទំព័រ -->
+        <div class="app-title">គំរូថ្មី</div>
 
-                <div class="splash-credits">
-                    អ្នកសម្រួលបច្ចេកទេស : <br><span>លី សៀវឡុង [ LYY SEAV LONG ]</span><br><br>
-                    អ្នកគ្រប់គ្រង : <br><span>នុន ពិសិទ្ធិ [ NUN PISETH ]</span>
-                </div>
+        <!-- ផ្ទាំងបដាធំ (Banner) -->
+        <div class="main-banner">Banner Image / Promos</div>
 
-                <div class="splash-timer">
-                    កំពុងចូលទៅកាន់ហាងក្នុងរយៈពេល<br>
-                    <span id="countdown-timer" class="splash-countdown">5</span> វិនាទី...
-                </div>
+        <!-- ខ្សែបន្ទាត់រំលេច -->
+        <div class="sub-banner-line"></div>
 
-                <button class="skip-btn" onclick="enterStore()">ចូលហាងឥឡូវនេះ ➔</button>
-            </div>
+        <!-- ចំណងជើង Game topup -->
+        <div class="section-title">Game topup</div>
 
-            <!-- ================= VIEW 0.5: GENERATING QR (Loading 5s) ================= -->
-            <div id="generating-qr-view" class="splash-view hidden">
-                <div class="qr-loading-icon">
-                    <img src="https://img.sanishtech.com/u/3eb1d9f4f7b6204e46a472918b047f31.jpeg" alt="QR Loading">
-                </div>
-                <div class="splash-title" style="margin-top: 10px;">
-                    កំពុងបង្កើត QR Code សម្រាប់បង់ប្រាក់
-                </div>
-                <div class="splash-timer" style="margin-top: 15px;">
-                    សូមរង់ចាំក្នុងរយៈពេល<br>
-                    <span id="qr-countdown-timer" class="splash-countdown">5</span> វិនាទី...
-                </div>
-            </div>
-
-            <!-- ================= VIEW 1: HOME PAGE ================= -->
-            <div id="home-view" class="header-content hidden">
-                <div class="header-top">
-                    <img src="https://img.sanishtech.com/u/bcfdd7242970dba2e78b3dca9f4f5a1a.png" alt="Logo" class="shop-logo">
-                    <div class="shop-title-wrapper">
-                        <h2>FOXING CAMBO TOPUP</h2>
-                        <div class="subtitle">TOUP GAME STORE 24/7</div>
-                    </div>
-                </div>
-
-                <div class="banner-wrapper">
-                    <img src="https://img.sanishtech.com/u/632af75453b5770a7b832247e13aa279.png" alt="Banner" class="shop-banner">
-                </div>
-                
-                <div class="welcome-wrapper">
-                    <div class="welcome-box">
-                        <marquee scrollamount="4" behavior="scroll" direction="left">
-                            សូមស្វាគមន៌មកកាន់ <span class="highlight-blue">FOXING CAMBO TOPUP !</span> &nbsp; | &nbsp; 
-                            TOPUP GAME STORE IN CAMBODIA ! &nbsp; | &nbsp; 
-                            <span class="highlight-red">FAST SAFE SPEED UP 50+</span>
-                        </marquee>
-                    </div>
-                </div>
-
-                <div class="section-title">
-                    <span>ជ្រើសរើសហ្គេម (Select Game)</span>
-                    <span class="blue-tick">✔</span>
-                </div>
-
-                <div class="game-grid">
-                    <div class="game-card-wrapper" onclick="selectMainGame(this, 'MOBILE')">
-                        <div class="game-card">
-                            <div class="active-tick">✔</div>
-                            <img src="https://img.sanishtech.com/u/b35f120e0af59b9eb2f74432fec73169.jpeg" alt="Mobile" class="game-logo">
-                            <div class="game-name">MOBILE</div>
-                        </div>
-                    </div>
-                    <div class="game-card-wrapper" onclick="selectMainGame(this, 'FREE FIRE')">
-                        <div class="game-card">
-                            <div class="active-tick">✔</div>
-                            <img src="https://img.sanishtech.com/u/2fbb998dbf6638f29c1ca2b0dec8749c.jpeg" alt="Free Fire" class="game-logo">
-                            <div class="game-name">FREE FIRE</div>
-                        </div>
-                    </div>
-                    <div class="game-card-wrapper" onclick="selectMainGame(this, 'ROBLOX')">
-                        <div class="game-card">
-                            <div class="active-tick">✔</div>
-                            <img src="https://img.sanishtech.com/u/cdeaeb7e51dbab512d0cb8b244abb44e.jpeg" alt="Roblox" class="game-logo">
-                            <div class="game-name">ROBLOX</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="section-title">
-                    <span>ទំនិញអាខោន Digital 🎁</span>
-                    <span class="blue-tick">✔</span>
-                </div>
-                <div class="digital-card-wrapper" onclick="alert('សេវាកម្មទំនិញអាខោន Digital នឹងបើកដំណើរការឆាប់ៗនេះ!')">
-                    <div class="digital-card">
-                        <div class="digital-icon">🛍️</div>
-                        <div class="digital-info">
-                            <div class="digital-title">ទំនិញអាខោន DIGITAL</div>
-                            <div class="digital-desc">Netflix, Spotify, YouTube & More...</div>
-                        </div>
-                        <div style="color: #38bdf8; font-weight: 800; font-size: 16px;">➔</div>
-                    </div>
-                </div>
-
-                <div class="section-title">
-                    <span>សេវាកម្ម SMM PANEL 🚀</span>
-                    <span class="blue-tick">✔</span>
-                </div>
-                <div class="digital-card-wrapper" onclick="alert('សេវាកម្ម SMM PANEL នឹងបើកដំណើរការឆាប់ៗនេះ!')">
-                    <div class="digital-card">
-                        <div class="digital-icon">🚀</div>
-                        <div class="digital-info">
-                            <div class="digital-title">សេវាកម្ម SMM PANEL</div>
-                            <div class="digital-desc">Boost Followers, Likes, Views...</div>
-                        </div>
-                        <div style="color: #38bdf8; font-weight: 800; font-size: 16px;">➔</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ================= VIEW 2: ROBLOX STORE ================= -->
-            <div id="roblox-view" class="header-content hidden">
-                <div class="header-top">
-                    <img src="https://img.sanishtech.com/u/bcfdd7242970dba2e78b3dca9f4f5a1a.png" alt="Logo" class="shop-logo">
-                    <div class="shop-title-wrapper">
-                        <h2>ROBLOX STORE</h2>
-                        <div class="subtitle">FOXING CAMBO TOPUP 24/7</div>
-                    </div>
-                </div>
-                
-                <div class="section-title">
-                    <span>ជ្រើសរើសកញ្ចប់ Robux</span>
-                    <span class="blue-tick">✔</span>
-                </div>
-
-                <div class="admin-contact-box">
-                    <span class="admin-text">សូមទាក់ទងទៅកាន់អ្នកគ្រប់គ្រងសុវត្ដិភាពជាងនេះ :</span>
-                    <a href="https://t.me/longzzsmmdigitall" target="_blank" class="tg-btn">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-                        Contact Admin @longzzsmmdigitall
-                    </a>
-                </div>
-
-                <div class="packages-grid">
-                    <div class="package-card active" onclick="selectPackage(this)"><div class="package-amount">80 Robux</div><div class="package-price">$1.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">160 Robux</div><div class="package-price">$2.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">240 Robux</div><div class="package-price">$3.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">320 Robux</div><div class="package-price">$4.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">400 Robux</div><div class="package-price">$5.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">480 Robux</div><div class="package-price">$6.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">560 Robux</div><div class="package-price">$7.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">640 Robux</div><div class="package-price">$8.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">720 Robux</div><div class="package-price">$9.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">800 Robux</div><div class="package-price">$10.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">880 Robux</div><div class="package-price">$11.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">960 Robux</div><div class="package-price">$12.00</div></div>
-                    <div class="package-card" onclick="selectPackage(this)" style="grid-column: span 2;"><div class="package-amount">1000 Robux</div><div class="package-price">$12.50</div></div>
-                </div>
-            </div>
-
-            <!-- ================= VIEW 3: FREE FIRE STORE ================= -->
-            <div id="freefire-view" class="header-content hidden">
-                <div class="header-top">
-                    <img src="https://img.sanishtech.com/u/bcfdd7242970dba2e78b3dca9f4f5a1a.png" alt="Logo" class="shop-logo">
-                    <div class="shop-title-wrapper">
-                        <h2>FREE FIRE STORE</h2>
-                        <div class="subtitle">FOXING CAMBO TOPUP 24/7</div>
-                    </div>
-                </div>
-                
-                <div class="section-title">
-                    <span>🔥 សូមជ្រើសរើសកញ្ចប់ Free Fire</span>
-                    <span class="blue-tick">✔</span>
-                </div>
-
-                <div class="input-container">
-                    <input type="text" id="freefire-id-1" class="game-input" placeholder="សូមបញ្ជូល ID Game នៅទីនេះ !">
-                    <input type="text" id="freefire-id-2" class="game-input" placeholder="បញ្ជាក់ ID Game ម្ដងទៀត">
-                </div>
-
-                <div class="packages-grid">
-                    <div class="package-card active" onclick="selectPackage(this)"><div class="package-amount">💎 25 Diamonds</div><div class="package-price">$0.30</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 100 Diamonds</div><div class="package-price">$0.95</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 310 Diamonds</div><div class="package-price">$2.94</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 520 Diamonds</div><div class="package-price">$4.80</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 1060 Diamonds</div><div class="package-price">$8.85</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 2180 Diamonds</div><div class="package-price">$18.50</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 5600 Diamonds</div><div class="package-price">$47.99</div></div>
-                    <div class="package-card" onclick="selectPackage(this)"><div class="package-amount">💎 11500 Diamonds</div><div class="package-price">$95.00</div></div>
-                </div>
-            </div>
-
-            <!-- ================= VIEW 4: PAYMENT (Upload & QR) ================= -->
-            <div id="payment-view" class="header-content hidden">
-                <div class="header-top">
-                    <img src="https://img.sanishtech.com/u/bcfdd7242970dba2e78b3dca9f4f5a1a.png" alt="Logo" class="shop-logo">
-                    <div class="shop-title-wrapper">
-                        <h2>ការបង់ប្រាក់ (PAYMENT)</h2>
-                        <div class="subtitle">សូមស្កេន និងបញ្ចូលវិក្កយបត្រ</div>
-                    </div>
-                </div>
-
-                <!-- Order Summary -->
-                <div class="order-summary">
-                    <div class="summary-item">ហ្គេម: <span id="summary-game">ROBLOX</span></div>
-                    <div class="summary-item" id="summary-id-row">ID Game: <span id="summary-id">123456</span></div>
-                    <div class="summary-item">កញ្ចប់ទិញ: <span id="summary-pkg">1000 Robux</span></div>
-                    <div class="summary-item">តម្លៃសរុប: <span id="summary-price" style="color: #e11d48;">$12.50</span></div>
-                </div>
-
-                <div class="section-title">
-                    <span>🏦 ស្កេនបង់ប្រាក់ (Scan to Pay)</span>
-                </div>
-                <div class="qr-wrapper">
-                    <img src="https://img.sanishtech.com/u/3eb1d9f4f7b6204e46a472918b047f31.jpeg" alt="QR Code" class="qr-image">
-                    <div class="qr-text">សូមរក្សាទុកវិក្កយបត្រ (Receipt) បន្ទាប់ពីបង់ប្រាក់រួច!</div>
-                </div>
-
-                <div class="section-title">
-                    <span>🧾 បញ្ជូលវិក្កយបត្របង់ប្រាក់</span>
-                </div>
-                <div class="upload-wrapper">
-                    <label for="payment-receipt" id="payment-receipt-label" class="upload-label">
-                        <span>📸 ចុចទីនេះដើម្បី Upload វិក្កយបត្រ</span>
-                    </label>
-                    <input type="file" id="payment-receipt" class="upload-input" accept="image/*" onchange="previewReceipt(this, 'payment-receipt-label')">
-                </div>
-            </div>
-
-            <!-- ================= FOOTER SECTION ================= -->
-            <div id="footer-section" class="footer-section hidden">
-                <button id="back-btn" class="back-btn hidden" onclick="goBack()">⬅ ត្រឡប់ក្រោយ (Back)</button>
-
-                <div id="topup-btn-container" class="btn-wrapper hidden">
-                    <button id="main-action-btn" class="topup-btn" onclick="handleActionButton()">🛒 ទិញឥឡូវនេះ (TOUP NOW)</button>
-                </div>
-
-                <div class="footer">
-                    <span>SEAVLONG GROUP 2026©</span>
-                    <span>All Right Reserved</span>
-                </div>
-            </div>
-
+        <!-- ប្រអប់ហ្គេមតូចៗ -->
+        <div class="grid-cards">
+            <div class="card-item"></div>
+            <div class="card-item"></div>
+            <div class="card-item"></div>
         </div>
+
+        <!-- ប៊ូតុងសេវាកម្មផ្សេងៗ -->
+        <button class="service-btn" onclick="alert('ចូលទៅកាន់ អាខោន Digital')">អាខោន Digital</button>
+        <button class="service-btn" onclick="alert('ចូលទៅកាន់ សេវាកម្មបូសឆែក')">សេវាកម្មបូសឆែក</button>
     </div>
 
-    <script>
-        window.Telegram.WebApp.ready();
-        window.Telegram.WebApp.expand();
-
-        // ------------------ Telegram Bot Setup ------------------
-        const part1 = '8816209068:';
-        const part2 = 'AAF8fVH7eiNvqP4zvbFOq6_FQA0b6AV_FLY';
-        const BOT_TOKEN = part1 + part2;
-        const CHAT_ID = '-1004454845081';
-
-        let currentView = 'home';
-        let selectedMainGame = '';
-        
-        // ទិន្នន័យបណ្ដោះអាសន្ន
-        let orderData = { id: '', pkgAmount: '', pkgPrice: '' };
-
-        let countdownValue = 5; 
-        let countdownInterval;
-
-        window.onload = function() {
-            countdownInterval = setInterval(() => {
-                countdownValue--;
-                document.getElementById('countdown-timer').innerText = countdownValue;
-                
-                if (countdownValue <= 0) {
-                    enterStore(); 
-                }
-            }, 1000);
-        };
-
-        function enterStore() {
-            clearInterval(countdownInterval); 
-            document.getElementById('splash-view').classList.add('hidden');
-            document.getElementById('home-view').classList.remove('hidden');
-            document.getElementById('footer-section').classList.remove('hidden');
-        }
-
-        // មុខងារត្រឡប់ក្រោយ (Back Button)
-        function goBack() {
-            if (currentView === 'roblox' || currentView === 'freefire') {
-                showHome();
-            } else if (currentView === 'payment') {
-                if (selectedMainGame === 'ROBLOX') showRobloxStore();
-                else showFreeFireStore();
-            }
-        }
-
-        function selectMainGame(element, gameName) {
-            let cards = document.querySelectorAll('#home-view .game-card');
-            cards.forEach(c => c.classList.remove('active'));
-
-            element.querySelector('.game-card').classList.add('active');
-            selectedMainGame = gameName;
-
-            document.getElementById('topup-btn-container').classList.remove('hidden');
-        }
-
-        function previewReceipt(input, labelId) {
-            let label = document.getElementById(labelId);
-            if (input.files && input.files[0]) {
-                let fileName = input.files[0].name;
-                if(fileName.length > 20) fileName = fileName.substring(0, 17) + '...';
-                label.innerHTML = `<span>✅ រូបភាពរួចរាល់: ${fileName}</span>`;
-                label.classList.add('uploaded');
-            } else {
-                label.innerHTML = `<span>📸 ចុចទីនេះដើម្បី Upload វិក្កយបត្រ</span>`;
-                label.classList.remove('uploaded');
-            }
-        }
-
-        // ការគ្រប់គ្រងប៊ូតុងខាងក្រោម
-        function handleActionButton() {
-            if (currentView === 'home') {
-                if (selectedMainGame === 'ROBLOX') {
-                    showRobloxStore();
-                } else if (selectedMainGame === 'FREE FIRE') {
-                    showFreeFireStore();
-                } else {
-                    alert('សេវាកម្ម ' + selectedMainGame + ' នឹងបើកដំណើរការឆាប់ៗនេះ!');
-                }
-            } else if (currentView === 'roblox' || currentView === 'freefire') {
-                // ដំណាក់កាលទិញ -> លោតទៅ Qr Loading
-                startPaymentFlow();
-            } else if (currentView === 'payment') {
-                // ដំណាក់កាលបង់ប្រាក់ -> Submit ទៅ Telegram
-                processOrder();
-            }
-        }
-
-        // ចាប់ផ្ដើម Flow បង់ប្រាក់
-        function startPaymentFlow() {
-            // ១. ពិនិត្យការវាយ ID
-            if (currentView === 'freefire') {
-                let id1 = document.getElementById('freefire-id-1').value.trim();
-                let id2 = document.getElementById('freefire-id-2').value.trim();
-                if (!id1 || !id2) {
-                    alert('សូមបញ្ជូល ID Game ទាំងពីរប្រអប់ឱ្យបានត្រឹមត្រូវ!');
-                    return;
-                }
-                if (id1 !== id2) {
-                    alert('ID Game មិនផ្ទៀងផ្ទាត់គ្នាទេ សូមពិនិត្យម្ដងទៀត!');
-                    return;
-                }
-                orderData.id = id1;
-            } else {
-                orderData.id = "ទាក់ទងតាមឆាត";
-            }
-
-            // ២. ទាញយកតម្លៃ និងកញ្ចប់
-            let activePkg = document.querySelector(`#${currentView}-view .package-card.active`);
-            if (!activePkg) {
-                alert('សូមជ្រើសរើសកញ្ចប់ណាមួយសិន!');
-                return;
-            }
-            orderData.pkgAmount = activePkg.querySelector('.package-amount').innerText;
-            orderData.pkgPrice = activePkg.querySelector('.package-price').innerText;
-
-            // ៣. លោត Loading 5 វិនាទី
-            currentView = 'qr_loading';
-            document.getElementById('roblox-view').classList.add('hidden');
-            document.getElementById('freefire-view').classList.add('hidden');
-            document.getElementById('footer-section').classList.add('hidden');
-            
-            let loadingView = document.getElementById('generating-qr-view');
-            loadingView.classList.remove('hidden');
-            
-            let qrCount = 5;
-            document.getElementById('qr-countdown-timer').innerText = qrCount;
-            let qrInterval = setInterval(() => {
-                qrCount--;
-                document.getElementById('qr-countdown-timer').innerText = qrCount;
-                if(qrCount <= 0) {
-                    clearInterval(qrInterval);
-                    loadingView.classList.add('hidden');
-                    showPaymentPage();
-                }
-            }, 1000);
-        }
-
-        // បង្ហាញទំព័របង់ប្រាក់ (QR + Upload)
-        function showPaymentPage() {
-            currentView = 'payment';
-            
-            // បញ្ចូលទិន្នន័យទៅក្នុងប្រអប់ Summary
-            document.getElementById('summary-game').innerText = selectedMainGame;
-            document.getElementById('summary-pkg').innerText = orderData.pkgAmount;
-            document.getElementById('summary-price').innerText = orderData.pkgPrice;
-            
-            if(selectedMainGame === 'ROBLOX') {
-                document.getElementById('summary-id-row').style.display = 'none';
-            } else {
-                document.getElementById('summary-id-row').style.display = 'flex';
-                document.getElementById('summary-id').innerText = orderData.id;
-            }
-
-            // សម្អាតប្រអប់ Upload ចាស់
-            let fileInput = document.getElementById('payment-receipt');
-            fileInput.value = "";
-            previewReceipt(fileInput, 'payment-receipt-label');
-
-            document.getElementById('payment-view').classList.remove('hidden');
-            document.getElementById('footer-section').classList.remove('hidden');
-            
-            // ដូរប៊ូតុង
-            let actionBtn = document.getElementById('main-action-btn');
-            actionBtn.innerText = '✅ បញ្ជាក់ការបង់ប្រាក់';
-            actionBtn.style.background = '#059669'; // ពណ៌បៃតង
-        }
-
-        // បញ្ជូនទៅ Telegram
-        function processOrder() {
-            let receiptInput = document.getElementById('payment-receipt');
-            let file = receiptInput.files[0];
-            if (!file) {
-                alert('សូមបញ្ជូលរូបភាពវិក្កយបត្របង់ប្រាក់សិន!');
-                return;
-            }
-
-            let tgUser = "Unknown Customer";
-            if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user) {
-                let userObj = window.Telegram.WebApp.initDataUnsafe.user;
-                tgUser = userObj.first_name || '';
-                if (userObj.last_name) tgUser += ' ' + userObj.last_name;
-                if (userObj.username) tgUser += ` (@${userObj.username})`;
-            }
-
-            let text = `📦 <b>NEW ORDER ALERT!</b>\n`;
-            text += `━━━━━━━━━━━━━━━━━━\n`;
-            text += `👤 <b>អតិថិជន:</b> ${tgUser}\n`;
-            text += `🎮 <b>ប្រភេទហ្គេម:</b> ${selectedMainGame}\n`;
-            text += `🆔 <b>ID Game:</b> <code>${orderData.id}</code>\n`;
-            text += `💎 <b>កញ្ចប់ទិញ:</b> ${orderData.pkgAmount}\n`;
-            text += `💰 <b>តម្លៃ:</b> ${orderData.pkgPrice}\n`;
-            text += `━━━━━━━━━━━━━━━━━━\n`;
-            text += `⏳ <b>ពេលវេលា:</b> ${new Date().toLocaleString('en-US', { timeZone: 'Asia/Phnom_Penh' })}`;
-
-            let actionBtn = document.getElementById('main-action-btn');
-            let originalText = actionBtn.innerText;
-            actionBtn.innerText = 'កំពុងបញ្ជូនទិន្នន័យ...';
-            actionBtn.disabled = true;
-
-            let url = `https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`;
-
-            let replyMarkup = {
-                inline_keyboard: [
-                    [
-                        { text: "✅ អនុម័ត (Approve)", callback_data: "order_approve" },
-                        { text: "❌ បដិសេធ (Reject)", callback_data: "order_reject" }
-                    ]
-                ]
-            };
-
-            let formData = new FormData();
-            formData.append('chat_id', CHAT_ID);
-            formData.append('photo', file);
-            formData.append('caption', text);
-            formData.append('parse_mode', 'HTML');
-            formData.append('reply_markup', JSON.stringify(replyMarkup));
-
-            fetch(url, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if(data.ok) {
-                    alert('✅ ការបញ្ជាទិញទទួលបានជោគជ័យ! សូមរង់ចាំការដំណើរការពី Admin...');
-                    
-                    if (selectedMainGame === 'FREE FIRE') {
-                        document.getElementById('freefire-id-1').value = '';
-                        document.getElementById('freefire-id-2').value = '';
-                    }
-                    showHome(); 
-                } else {
-                    alert('❌ មានបញ្ហាក្នុងការបញ្ជូនទិន្នន័យ សូមសាកល្បងម្ដងទៀត!');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('❌ មានបញ្ហាបណ្ដាញទាក់ទង សូមសាកល្បងម្ដងទៀត!');
-            })
-            .finally(() => {
-                actionBtn.innerText = originalText;
-                actionBtn.disabled = false;
-            });
-        }
-
-        // Reset Styles & Go Home
-        function showHome() {
-            currentView = 'home';
-            document.getElementById('roblox-view').classList.add('hidden');
-            document.getElementById('freefire-view').classList.add('hidden');
-            document.getElementById('payment-view').classList.add('hidden');
-            document.getElementById('home-view').classList.remove('hidden');
-            document.getElementById('back-btn').classList.add('hidden');
-            
-            let actionBtn = document.getElementById('main-action-btn');
-            actionBtn.innerText = '🛒 ទិញឥឡូវនេះ (TOUP NOW)';
-            actionBtn.style.background = '#0f172a'; // ពណ៌ខ្មៅវិញ
-            
-            if (selectedMainGame !== '') {
-                document.getElementById('topup-btn-container').classList.remove('hidden');
-            }
-        }
-
-        function showRobloxStore() {
-            currentView = 'roblox';
-            document.getElementById('home-view').classList.add('hidden');
-            document.getElementById('payment-view').classList.add('hidden');
-            document.getElementById('roblox-view').classList.remove('hidden');
-            document.getElementById('back-btn').classList.remove('hidden');
-            
-            let actionBtn = document.getElementById('main-action-btn');
-            actionBtn.innerText = '🛒 ទិញឥឡូវនេះ (TOUP NOW)';
-            actionBtn.style.background = '#0f172a';
-        }
-
-        function showFreeFireStore() {
-            currentView = 'freefire';
-            document.getElementById('home-view').classList.add('hidden');
-            document.getElementById('payment-view').classList.add('hidden');
-            document.getElementById('freefire-view').classList.remove('hidden');
-            document.getElementById('back-btn').classList.remove('hidden');
-            
-            let actionBtn = document.getElementById('main-action-btn');
-            actionBtn.innerText = '🛒 ទិញឥឡូវនេះ (TOUP NOW)';
-            actionBtn.style.background = '#0f172a';
-        }
-
-        function selectPackage(element) {
-            let cards = document.querySelectorAll('.package-card');
-            cards.forEach(c => c.classList.remove('active'));
-            element.classList.add('active');
-        }
-    </script>
 </body>
 </html>
