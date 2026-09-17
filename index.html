@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FOXING CAMBO TOPUP</title>
+    <title>FOX TOUP STORE</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,7 +13,6 @@
         }
         body {
             background-color: #0f172a;
-            color: #333;
             display: flex;
             justify-content: center;
             padding: 10px;
@@ -23,7 +22,7 @@
             max-width: 450px;
             background: #ffffff;
             border-radius: 24px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             padding: 15px;
             overflow: hidden;
         }
@@ -35,133 +34,121 @@
             margin-bottom: 15px;
         }
         .header img {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #f97316;
+            border: 2px solid #3b82f6;
         }
         .header-text h1 {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: bold;
             color: #111;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         .header-text p {
-            font-size: 12px;
+            font-size: 11px;
             color: #64748b;
+            font-weight: bold;
         }
+        .verified-badge {
+            color: #3b82f6;
+            font-size: 14px;
+        }
+
         /* Main Banner */
         .main-banner {
             width: 100%;
             border-radius: 16px;
             overflow: hidden;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         .main-banner img {
             width: 100%;
+            height: auto;
             display: block;
         }
-        /* Notice Box */
-        .notice-box {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 12px;
+
+        /* RGB Animated Scrolling Text */
+        .rgb-text-box {
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 10px;
             text-align: center;
-            font-size: 13px;
-            color: #2563eb;
-            font-weight: 500;
+            font-size: 12px;
+            font-weight: bold;
             margin-bottom: 20px;
+            overflow: hidden;
+            white-space: nowrap;
         }
+        .rgb-text {
+            display: inline-block;
+            background-image: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #ff00c8, #ff0000);
+            background-size: 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rgbAnimation 6s linear infinite;
+        }
+        @keyframes rgbAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         /* Section Titles */
         .section-title {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
             color: #1e293b;
             margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            font-style: italic;
         }
-        /* Games Grid */
+
+        /* Games Grid (2 columns) */
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
             margin-bottom: 20px;
         }
         .game-card {
-            background: #ffffff;
-            border: 2px solid #e2e8f0;
+            background: #e2e8f0;
             border-radius: 16px;
-            padding: 12px 5px;
+            padding: 15px 10px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
         }
         .game-card:active {
             transform: scale(0.95);
         }
         .game-card img {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 8px;
+            border: 2px solid #fff;
         }
         .game-card span {
-            font-size: 11px;
+            font-size: 13px;
             font-weight: bold;
             color: #1e293b;
             display: block;
         }
-        /* Digital Items Banner */
-        .digital-box {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 12px 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
-        .digital-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .digital-left img {
-            width: 35px;
-            height: 35px;
-        }
-        .digital-info h3 {
-            font-size: 13px;
-            font-weight: bold;
-            color: #1e293b;
-        }
-        .digital-info p {
-            font-size: 11px;
-            color: #64748b;
-        }
-        .arrow-icon {
-            color: #2563eb;
-            font-weight: bold;
-            font-size: 16px;
-        }
+
         /* Footer */
         .footer {
             text-align: center;
             font-size: 11px;
-            color: #94a3b8;
+            color: #64748b;
             margin-top: 15px;
             border-top: 1px solid #f1f5f9;
             padding-top: 10px;
-            display: flex;
-            justify-content: space-between;
+            line-height: 1.5;
         }
     </style>
 </head>
@@ -170,61 +157,50 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <img src="https://i.imgur.com/7bQyQ1A.png" alt="Logo">
+            <img src="https://img.sanishtech.com/u/69cece719e9b07a70bccc9b7ef27f46d.png" alt="Logo">
             <div class="header-text">
-                <h1>FOXING CAMBO TOPUP</h1>
-                <p>TOUP GAME STORE 24/7</p>
+                <h1>FOX TOUP STORE <span class="verified-badge">✔</span></h1>
+                <p>WE WELLCOME TO MY STORE 24/7</p>
             </div>
         </div>
 
         <!-- Main Banner -->
         <div class="main-banner">
-            <img src="https://i.imgur.com/YourBannerImageHere.jpg" alt="Banner" id="bannerImg">
+            <img src="https://img.sanishtech.com/u/34648dc5b57e4c16af3c5e0be2da235c.png" alt="Banner">
         </div>
 
-        <!-- Notice -->
-        <div class="notice-box">
-            សូមស្វាគមន៍មកកាន់ FOXING CAMBO TOPUP
+        <!-- RGB Text -->
+        <div class="rgb-text-box">
+            <div class="rgb-text">សូមស្វាគមន៍មកកាន់ FOX TOUP STORE, បញ្ចូល Diamond Roblox More...</div>
         </div>
 
-        <!-- Section: Select Game -->
+        <!-- Section: Game Topup -->
         <div class="section-title">
-            ជ្រើសរើសហ្គេម (Select Game) ✓
+            ••បម្រើសេវាកម្ម Game Topup••
         </div>
         <div class="games-grid">
-            <div class="game-card" onclick="alert('Mobile Legends')">
-                <img src="https://i.imgur.com/mlbb.png" alt="MLBB">
-                <span>MOBILE</span>
-            </div>
             <div class="game-card" onclick="alert('Free Fire')">
-                <img src="https://i.imgur.com/ff.png" alt="FF">
-                <span>FREE FIRE</span>
+                <img src="https://img.sanishtech.com/u/83ac5e00eda9314a3ab9db823fcaae1d.jpeg" alt="Free Fire">
+                <span>Free Fire</span>
+            </div>
+            <div class="game-card" onclick="alert('Mobile legend')">
+                <img src="https://img.sanishtech.com/u/36a807ec1406077237280a884a9d52fe.jpeg" alt="Mobile legend">
+                <span>Mobile legend</span>
             </div>
             <div class="game-card" onclick="alert('Roblox')">
-                <img src="https://i.imgur.com/roblox.png" alt="Roblox">
-                <span>ROBLOX</span>
+                <img src="https://img.sanishtech.com/u/a0734a8bbf9da833b99cdf97533e69f3.jpeg" alt="Roblox">
+                <span>Roblox</span>
             </div>
-        </div>
-
-        <!-- Section: Digital Items -->
-        <div class="section-title">
-            ទំនិញអាខោន Digital 🎁 ✓
-        </div>
-        <div class="digital-box" onclick="alert('Digital Accounts')">
-            <div class="digital-left">
-                <span style="font-size: 24px;">🛍️</span>
-                <div class="digital-info">
-                    <h3>ទំនិញអាខោន DIGITAL</h3>
-                    <p>Netflix, Spotify, YouTube & More...</p>
-                </div>
+            <div class="game-card" onclick="alert('PUBG')">
+                <img src="https://img.sanishtech.com/u/abe84902e49fa8ef8724e4b984905d3a.jpeg" alt="PUBG">
+                <span>PUBG</span>
             </div>
-            <div class="arrow-icon">→</div>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            <span>SEAVLONG GROUP 2026©</span>
-            <span>All Right Reserved</span>
+            <p>@LY SEAVLONG GROUP 2026 24/7</p>
+            <p>All in one website topup game store .kh</p>
         </div>
     </div>
 
