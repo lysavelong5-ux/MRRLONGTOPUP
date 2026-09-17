@@ -72,13 +72,13 @@
             display: block;
         }
 
-        /* RGB Animated Scrolling Text */
+        /* Running Text (White, Black, Red Animation) */
         .rgb-text-box {
             background: #f1f5f9;
             border-radius: 10px;
             padding: 10px;
             text-align: center;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: bold;
             margin-bottom: 20px;
             overflow: hidden;
@@ -86,25 +86,32 @@
         }
         .rgb-text {
             display: inline-block;
-            background-image: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #ff00c8, #ff0000);
-            background-size: 400%;
+            background-image: linear-gradient(45deg, #ffffff, #000000, #ff0000, #ffffff);
+            background-size: 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: rgbAnimation 6s linear infinite;
+            animation: colorChange 4s linear infinite;
         }
-        @keyframes rgbAnimation {
+        @keyframes colorChange {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Section Titles */
+        /* 3D Pop-up Section Title */
         .section-title {
-            font-size: 14px;
-            font-weight: bold;
+            font-size: 16px;
+            font-weight: 900;
             color: #1e293b;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             font-style: italic;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px #cbd5e1, 4px 4px 0px #94a3b8;
+            animation: popUp3D 2s ease-in-out infinite alternate;
+        }
+        @keyframes popUp3D {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-3px); }
         }
 
         /* Games Grid (2 columns) */
@@ -115,23 +122,25 @@
             margin-bottom: 20px;
         }
         .game-card {
-            background: #e2e8f0;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
             border-radius: 16px;
             padding: 15px 10px;
             text-align: center;
             cursor: pointer;
-            transition: transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         .game-card:active {
             transform: scale(0.95);
         }
         .game-card img {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 8px;
-            border: 2px solid #fff;
+            border: 2px solid #3b82f6;
         }
         .game-card span {
             font-size: 13px;
@@ -169,14 +178,14 @@
             <img src="https://img.sanishtech.com/u/34648dc5b57e4c16af3c5e0be2da235c.png" alt="Banner">
         </div>
 
-        <!-- RGB Text -->
+        <!-- Running Text (White, Black, Red) -->
         <div class="rgb-text-box">
             <div class="rgb-text">សូមស្វាគមន៍មកកាន់ FOX TOUP STORE, បញ្ចូល Diamond Roblox More...</div>
         </div>
 
-        <!-- Section: Game Topup -->
+        <!-- Section: Game Topup (3D Effect) -->
         <div class="section-title">
-            ••បម្រើសេវាកម្ម Game Topup••
+            🔥 TopUp Game 3D ✓
         </div>
         <div class="games-grid">
             <div class="game-card" onclick="alert('Free Fire')">
