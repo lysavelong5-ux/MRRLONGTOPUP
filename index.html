@@ -27,10 +27,9 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             padding: 15px;
             overflow: hidden;
-            display: none; /* លាក់ហាងទុកសិន ចាំបាច់វាយកូដត្រូវទើបលេចឡើង */
+            display: none; 
         }
         
-        /* ផ្ទាំង Maintenance / Update Screen */
         #maintenance-screen {
             width: 100%;
             max-width: 450px;
@@ -126,7 +125,7 @@
             display: block;
         }
 
-        /* Running Text (White, Black, Red Animation) */
+        /* Running Text */
         .rgb-text-box {
             background: #f1f5f9;
             border-radius: 10px;
@@ -168,7 +167,7 @@
             100% { transform: translateY(-3px); }
         }
 
-        /* Games Grid (2 columns) */
+        /* Games Grid */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -217,7 +216,6 @@
 </head>
 <body>
 
-    <!-- ផ្ទាំង Maintenance / Update Screen -->
     <div id="maintenance-screen">
         <h2>🛠️ SYSTEM UPDATE</h2>
         <p>ប្រព័ន្ធកំពុងធ្វើប្រតិបត្តិការ (Update)<br>See you very soon guys 🙏🏻🎉</p>
@@ -228,9 +226,7 @@
         <div id="errorMsg" class="error-msg">លេខកូដមិនត្រឹមត្រូវទេ!</div>
     </div>
 
-    <!-- ផ្ទាំងហាង Mini App (លាក់រហូតទាល់តែវាយកូដត្រូវ) -->
     <div class="container" id="storeContainer">
-        <!-- Header -->
         <div class="header">
             <img src="https://img.sanishtech.com/u/69cece719e9b07a70bccc9b7ef27f46d.png" alt="Logo">
             <div class="header-text">
@@ -239,17 +235,14 @@
             </div>
         </div>
 
-        <!-- Main Banner -->
         <div class="main-banner">
             <img src="https://img.sanishtech.com/u/34648dc5b57e4c16af3c5e0be2da235c.png" alt="Banner">
         </div>
 
-        <!-- Running Text -->
         <div class="rgb-text-box">
             <div class="rgb-text">សូមស្វាគមន៍មកកាន់ FOX TOUP STORE, បញ្ចូល Diamond Roblox More...</div>
         </div>
 
-        <!-- Section: Game Topup (3D Effect) -->
         <div class="section-title">
             🔥 TopUp Game 3D ✓
         </div>
@@ -272,7 +265,6 @@
             </div>
         </div>
 
-        <!-- Footer -->
         <div class="footer">
             <p>@LY SEAVLONG GROUP 2026 24/7</p>
             <p>All in one website topup game store .kh</p>
@@ -280,23 +272,27 @@
     </div>
 
     <script>
-        // ឆែកមើលថាតើធ្លាប់វាយកូដត្រូវហើយឬនៅ (រក្សាសម្ងាត់ក្នុងเครื่อง)
-        if (localStorage.getItem("admin_logged") === "true") {
-            document.getElementById("maintenance-screen").style.display = "none";
-            document.getElementById("storeContainer").style.display = "block";
-            document.body.style.alignItems = "flex-start";
-        }
+        // ប្រើប្រាស់ localStorage ជាមួយលក្ខខណ្ឌកាន់តែច្បាស់
+        window.onload = function() {
+            if (localStorage.getItem("admin_logged") === "true") {
+                showStore();
+            }
+        };
 
         function checkAdmin() {
             var code = document.getElementById("adminCode").value;
             if (code === "168") {
                 localStorage.setItem("admin_logged", "true");
-                document.getElementById("maintenance-screen").style.display = "none";
-                document.getElementById("storeContainer").style.display = "block";
-                document.body.style.alignItems = "flex-start";
+                showStore();
             } else {
                 document.getElementById("errorMsg").style.display = "block";
             }
+        }
+
+        function showStore() {
+            document.getElementById("maintenance-screen").style.display = "none";
+            document.getElementById("storeContainer").style.display = "block";
+            document.body.style.alignItems = "flex-start";
         }
     </script>
 
