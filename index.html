@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FOX TOUP STORE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -44,6 +44,7 @@
             color: #ef4444;
             font-size: 20px;
             margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
         }
         #maintenance-screen p {
             color: #334155;
@@ -72,6 +73,7 @@
             border-radius: 10px;
             font-weight: bold;
             cursor: pointer;
+            font-family: 'Poppins', sans-serif;
         }
         .error-msg {
             color: #ef4444;
@@ -101,11 +103,15 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
         }
         .header-text p {
             font-size: 11px;
             color: #64748b;
             font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
         }
         .verified-badge {
             color: #3b82f6;
@@ -158,9 +164,11 @@
             font-weight: 700;
             color: #0f172a;
             margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
         }
 
-        /* Games Grid (3 ហ្គេមរៀបចំស្អាត) */
+        /* Games Grid */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -189,15 +197,15 @@
             margin-bottom: 6px;
             border: 2px solid #3b82f6;
         }
-        /* ឈ្មោះហ្គេមនៅពីលើ */
         .game-name {
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             color: #1e293b;
             margin-bottom: 8px;
             display: block;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
         }
-        /* Button TOPUP ⚡️ នៅពីក្រោម */
         .topup-btn {
             background: #2563eb;
             color: white;
@@ -208,6 +216,8 @@
             font-weight: bold;
             display: inline-block;
             cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
         }
 
         /* Footer */
@@ -219,19 +229,21 @@
             border-top: 1px solid #f1f5f9;
             padding-top: 10px;
             line-height: 1.5;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
     <div id="maintenance-screen">
-        <h2>🛠️ SYSTEM UPDATE</h2>
-        <p>ប្រព័ន្ធកំពុងធ្វើប្រតិបត្តិការ (Update)<br>See you very soon guys 🙏🏻🎉</p>
+        <h2 style="font-family: 'Poppins', sans-serif;">SYSTEM UPDATE</h2>
+        <p>ប្រព័ន្ធកំពុងធ្វើប្រតិបត្តិការ<br>SEE YOU VERY SOON GUYS 🙏🏻🎉</p>
         <div class="admin-input-box">
-            <input type="password" id="adminCode" placeholder="បញ្ចូលលេខកូដ Admin...">
-            <button onclick="checkAdmin()">ចូល</button>
+            <input type="password" id="adminCode" placeholder="ENTER ADMIN CODE...">
+            <button onclick="checkAdmin()">LOGIN</button>
         </div>
-        <div id="errorMsg" class="error-msg">លេខកូដមិនត្រឹមត្រូវទេ!</div>
+        <div id="errorMsg" class="error-msg">INVALID ADMIN CODE!</div>
     </div>
 
     <div class="container" id="storeContainer">
@@ -239,7 +251,7 @@
             <img src="https://img.sanishtech.com/u/69cece719e9b07a70bccc9b7ef27f46d.png" alt="Logo">
             <div class="header-text">
                 <h1>FOX TOUP STORE <span class="verified-badge">✔</span></h1>
-                <p>WE WELLCOME TO MY STORE 24/7</p>
+                <p>WE WELCOME TO MY STORE 24/7</p>
             </div>
         </div>
 
@@ -248,33 +260,33 @@
         </div>
 
         <div class="marquee-box">
-            <div class="marquee-text">🔥 សូមស្វាគមន៍មកកាន់ FOX TOUP STORE, បញ្ចូល Diamond Roblox & More... 🚀</div>
+            <div class="marquee-text">🔥 WELCOME TO FOX TOUP STORE, TOPUP DIAMOND ROBLOX & MORE... 🚀</div>
         </div>
 
         <div class="section-title">
-            🔥 TopUp Game
+            🔥 TOPUP GAME
         </div>
         <div class="games-grid">
-            <div class="game-card" onclick="alert('กำลัง Update service')">
+            <div class="game-card" onclick="alert('UPDATING SERVICE')">
                 <img src="https://img.sanishtech.com/u/83ac5e00eda9314a3ab9db823fcaae1d.jpeg" alt="Free Fire">
-                <span class="game-name">Free Fire</span>
+                <span class="game-name">FREE FIRE</span>
                 <button class="topup-btn">TOPUP ⚡️</button>
             </div>
-            <div class="game-card" onclick="alert('กำลัง Update service')">
-                <img src="https://img.sanishtech.com/u/36a807ec1406077237280a884a9d52fe.jpeg" alt="Mobile legend">
-                <span class="game-name">Mobile legend</span>
+            <div class="game-card" onclick="alert('UPDATING SERVICE')">
+                <img src="https://img.sanishtech.com/u/36a807ec1406077237280a884a9d52fe.jpeg" alt="Mobile Legend">
+                <span class="game-name">MOBILE LEGEND</span>
                 <button class="topup-btn">TOPUP ⚡️</button>
             </div>
-            <div class="game-card" onclick="alert('กำลัง Update service')">
+            <div class="game-card" onclick="alert('UPDATING SERVICE')">
                 <img src="https://img.sanishtech.com/u/a0734a8bbf9da833b99cdf97533e69f3.jpeg" alt="Roblox">
-                <span class="game-name">Roblox</span>
+                <span class="game-name">ROBLOX</span>
                 <button class="topup-btn">TOPUP ⚡️</button>
             </div>
         </div>
 
         <div class="footer">
             <p>@LY SEAVLONG GROUP 2026 24/7</p>
-            <p>All in one website topup game store .kh</p>
+            <p>ALL IN ONE WEBSITE TOPUP GAME STORE .KH</p>
         </div>
     </div>
 
