@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FOX TOUP STORE</title>
+    <!-- ដាក់ Google Font ខ្មែរ (Kantumruy Pro) ឱ្យស្អាតដាច់គេ -->
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Kantumruy Pro', sans-serif, Arial;
+            font-family: 'Kantumruy Pro', sans-serif, Arial, sans-serif;
         }
         body {
             background-color: #0f172a;
@@ -125,49 +127,41 @@
             display: block;
         }
 
-        /* Running Text */
-        .rgb-text-box {
+        /* Running Text (ចលនារត់វិលជុំ និងប្តូរពណ៌ ស ខ្មៅ ក្រហម) */
+        .marquee-box {
             background: #f1f5f9;
             border-radius: 10px;
-            padding: 10px;
-            text-align: center;
-            font-size: 13px;
-            font-weight: bold;
+            padding: 10px 0;
             margin-bottom: 20px;
             overflow: hidden;
             white-space: nowrap;
+            position: relative;
         }
-        .rgb-text {
+        .marquee-text {
             display: inline-block;
+            padding-left: 100%;
+            animation: marquee 12s linear infinite;
+            font-size: 13px;
+            font-weight: 700;
             background-image: linear-gradient(45deg, #ffffff, #000000, #ff0000, #ffffff);
             background-size: 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: colorChange 4s linear infinite;
         }
-        @keyframes colorChange {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
         }
 
-        /* 3D Pop-up Section Title */
+        /* Section Title (អក្សរធម្មតារាងធំច្បាស់ល្អ) */
         .section-title {
-            font-size: 16px;
-            font-weight: 900;
-            color: #1e293b;
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
             margin-bottom: 15px;
-            font-style: italic;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 0px #cbd5e1, 4px 4px 0px #94a3b8;
-            animation: popUp3D 2s ease-in-out infinite alternate;
-        }
-        @keyframes popUp3D {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-3px); }
         }
 
-        /* Games Grid */
+        /* Games Grid (រាងតូចល្មម មើលបានច្បាស់ល្អ) */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -176,28 +170,29 @@
         }
         .game-card {
             background: #f8fafc;
-            border: 2px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 15px 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 12px 10px;
             text-align: center;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            transition: transform 0.2s, background 0.2s;
         }
         .game-card:active {
-            transform: scale(0.95);
+            transform: scale(0.96);
+            background: #f1f5f9;
         }
         .game-card img {
-            width: 55px;
-            height: 55px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             border: 2px solid #3b82f6;
         }
         .game-card span {
             font-size: 13px;
-            font-weight: bold;
+            font-weight: 600;
             color: #1e293b;
             display: block;
         }
@@ -239,12 +234,14 @@
             <img src="https://img.sanishtech.com/u/34648dc5b57e4c16af3c5e0be2da235c.png" alt="Banner">
         </div>
 
-        <div class="rgb-text-box">
-            <div class="rgb-text">សូមស្វាគមន៍មកកាន់ FOX TOUP STORE, បញ្ចូល Diamond Roblox More...</div>
+        <!-- Running Text Animation -->
+        <div class="marquee-box">
+            <div class="marquee-text">🔥 សូមស្វាគមន៍មកកាន់ FOX TOUP STORE, បញ្ចូល Diamond Roblox & More... 🚀</div>
         </div>
 
+        <!-- Section Title -->
         <div class="section-title">
-            🔥 TopUp Game 3D ✓
+            🔥 TopUp Game
         </div>
         <div class="games-grid">
             <div class="game-card" onclick="alert('Free Fire')">
@@ -272,7 +269,6 @@
     </div>
 
     <script>
-        // ប្រើប្រាស់ localStorage ជាមួយលក្ខខណ្ឌកាន់តែច្បាស់
         window.onload = function() {
             if (localStorage.getItem("admin_logged") === "true") {
                 showStore();
