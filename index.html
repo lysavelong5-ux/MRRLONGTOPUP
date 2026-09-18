@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FOX TOUP STORE</title>
-    <!-- ដាក់ Google Font ខ្មែរ (Kantumruy Pro) ឱ្យស្អាតដាច់គេ -->
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -127,7 +126,7 @@
             display: block;
         }
 
-        /* Running Text (ចលនារត់វិលជុំ និងប្តូរពណ៌ ស ខ្មៅ ក្រហម) */
+        /* Running Text */
         .marquee-box {
             background: #f1f5f9;
             border-radius: 10px;
@@ -153,7 +152,7 @@
             100% { transform: translate(-100%, 0); }
         }
 
-        /* Section Title (អក្សរធម្មតារាងធំច្បាស់ល្អ) */
+        /* Section Title */
         .section-title {
             font-size: 18px;
             font-weight: 700;
@@ -161,7 +160,7 @@
             margin-bottom: 15px;
         }
 
-        /* Games Grid (រាងតូចល្មម មើលបានច្បាស់ល្អ) */
+        /* Games Grid (3 ហ្គេមរៀបចំស្អាត) */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -190,11 +189,25 @@
             margin-bottom: 6px;
             border: 2px solid #3b82f6;
         }
-        .game-card span {
+        /* ឈ្មោះហ្គេមនៅពីលើ */
+        .game-name {
             font-size: 13px;
             font-weight: 600;
             color: #1e293b;
+            margin-bottom: 8px;
             display: block;
+        }
+        /* Button TOPUP ⚡️ នៅពីក្រោម */
+        .topup-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: bold;
+            display: inline-block;
+            cursor: pointer;
         }
 
         /* Footer */
@@ -234,31 +247,28 @@
             <img src="https://img.sanishtech.com/u/34648dc5b57e4c16af3c5e0be2da235c.png" alt="Banner">
         </div>
 
-        <!-- Running Text Animation -->
         <div class="marquee-box">
             <div class="marquee-text">🔥 សូមស្វាគមន៍មកកាន់ FOX TOUP STORE, បញ្ចូល Diamond Roblox & More... 🚀</div>
         </div>
 
-        <!-- Section Title -->
         <div class="section-title">
             🔥 TopUp Game
         </div>
         <div class="games-grid">
-            <div class="game-card" onclick="alert('Free Fire')">
+            <div class="game-card" onclick="alert('กำลัง Update service')">
                 <img src="https://img.sanishtech.com/u/83ac5e00eda9314a3ab9db823fcaae1d.jpeg" alt="Free Fire">
-                <span>Free Fire</span>
+                <span class="game-name">Free Fire</span>
+                <button class="topup-btn">TOPUP ⚡️</button>
             </div>
-            <div class="game-card" onclick="alert('Mobile legend')">
+            <div class="game-card" onclick="alert('กำลัง Update service')">
                 <img src="https://img.sanishtech.com/u/36a807ec1406077237280a884a9d52fe.jpeg" alt="Mobile legend">
-                <span>Mobile legend</span>
+                <span class="game-name">Mobile legend</span>
+                <button class="topup-btn">TOPUP ⚡️</button>
             </div>
-            <div class="game-card" onclick="alert('Roblox')">
+            <div class="game-card" onclick="alert('กำลัง Update service')">
                 <img src="https://img.sanishtech.com/u/a0734a8bbf9da833b99cdf97533e69f3.jpeg" alt="Roblox">
-                <span>Roblox</span>
-            </div>
-            <div class="game-card" onclick="alert('PUBG')">
-                <img src="https://img.sanishtech.com/u/abe84902e49fa8ef8724e4b984905d3a.jpeg" alt="PUBG">
-                <span>PUBG</span>
+                <span class="game-name">Roblox</span>
+                <button class="topup-btn">TOPUP ⚡️</button>
             </div>
         </div>
 
