@@ -158,7 +158,18 @@
             100% { transform: translate(-100%, 0); }
         }
 
-        /* Section Title */
+        /* Back Button & Title */
+        .back-btn {
+            background: #64748b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 12px;
+        }
         .section-title {
             font-size: 18px;
             font-weight: 700;
@@ -168,7 +179,7 @@
             text-transform: uppercase;
         }
 
-        /* Vertical Games List (ជួរវែងចុះក្រោម) */
+        /* Vertical Games List */
         .games-list {
             display: flex;
             flex-direction: column;
@@ -227,6 +238,88 @@
             box-shadow: 0 4px 10px rgba(37,99,235,0.2);
         }
 
+        /* Free Fire Topup Page Styling */
+        #ff-page {
+            display: none;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+        }
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .pkg-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .pkg-card.selected {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+        .pkg-diamonds {
+            font-size: 14px;
+            font-weight: bold;
+            color: #1e293b;
+        }
+        .pkg-price {
+            font-size: 12px;
+            color: #16a34a;
+            font-weight: bold;
+            margin-top: 4px;
+        }
+
+        /* Loading & QR screen */
+        #loading-screen, #qr-screen {
+            display: none;
+            text-align: center;
+            padding: 30px 10px;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #2563eb;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .qr-img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            margin: 15px auto;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+        }
+
         /* Footer */
         .footer {
             text-align: center;
@@ -270,31 +363,62 @@
             <div class="marquee-text">🔥 WELCOME TO FOX TOUP STORE, TOPUP DIAMOND ROBLOX & MORE... 🚀</div>
         </div>
 
-        <div class="section-title">
-            🔥 SELECT YOUR GAME
-        </div>
-        
-        <div class="games-list">
-            <div class="game-card" onclick="alert('UPDATING SERVICE')">
-                <img src="https://img.sanishtech.com/u/a0734a8bbf9da833b99cdf97533e69f3.jpeg" alt="Roblox">
-                <div class="game-name">ROBLOX</div>
-                <div class="game-desc">Robux Top Up</div>
-                <button class="topup-btn">TOPUP ⚡️</button>
+        <!-- ហាងទំព័រដើម (Home View) -->
+        <div id="home-view">
+            <div class="section-title">🔥 SELECT YOUR GAME</div>
+            <div class="games-list">
+                <div class="game-card" onclick="openFreeFire()">
+                    <img src="https://img.sanishtech.com/u/83ac5e00eda9314a3ab9db823fcaae1d.jpeg" alt="Free Fire">
+                    <div class="game-name">FREE FIRE</div>
+                    <div class="game-desc">Diamond Top Up</div>
+                    <button class="topup-btn">TOPUP ⚡️</button>
+                </div>
+                <div class="game-card" onclick="alert('UPDATING SERVICE')">
+                    <img src="https://img.sanishtech.com/u/a0734a8bbf9da833b99cdf97533e69f3.jpeg" alt="Roblox">
+                    <div class="game-name">ROBLOX</div>
+                    <div class="game-desc">Robux Top Up</div>
+                    <button class="topup-btn">TOPUP ⚡️</button>
+                </div>
+                <div class="game-card" onclick="alert('UPDATING SERVICE')">
+                    <img src="https://img.sanishtech.com/u/36a807ec1406077237280a884a9d52fe.jpeg" alt="Mobile Legend">
+                    <div class="game-name">MOBILE LEGEND</div>
+                    <div class="game-desc">Diamond Top Up</div>
+                    <button class="topup-btn">TOPUP ⚡️</button>
+                </div>
             </div>
+        </div>
+
+        <!-- ទំព័រ Free Fire Topup -->
+        <div id="ff-page">
+            <button class="back-btn" onclick="goHome()">← BACK</button>
+            <div class="section-title">FREE FIRE TOPUP</div>
             
-            <div class="game-card" onclick="alert('UPDATING SERVICE')">
-                <img src="https://img.sanishtech.com/u/83ac5e00eda9314a3ab9db823fcaae1d.jpeg" alt="Free Fire">
-                <div class="game-name">FREE FIRE</div>
-                <div class="game-desc">Diamond Top Up</div>
-                <button class="topup-btn">TOPUP ⚡️</button>
+            <div class="input-group">
+                <label>ENTER PLAYER ID</label>
+                <input type="text" id="playerId" placeholder="Enter your Player ID...">
             </div>
 
-            <div class="game-card" onclick="alert('UPDATING SERVICE')">
-                <img src="https://img.sanishtech.com/u/36a807ec1406077237280a884a9d52fe.jpeg" alt="Mobile Legend">
-                <div class="game-name">MOBILE LEGEND</div>
-                <div class="game-desc">Diamond Top Up</div>
-                <button class="topup-btn">TOPUP ⚡️</button>
+            <div class="section-title" style="font-size: 14px;">SELECT PACKAGE</div>
+            <div class="packages-grid" id="packagesContainer">
+                <!-- Packages will be generated by script -->
             </div>
+
+            <button class="topup-btn" id="topupNowBtn" style="display: none; margin-top: 10px;" onclick="startTopup()">TOPUP NOW</button>
+        </div>
+
+        <!-- ផ្ទាំង Loading 5 វិនាទី -->
+        <div id="loading-screen">
+            <div class="spinner"></div>
+            <h3 style="font-family: 'Poppins', sans-serif; color: #1e293b;">CREATING QR CODE...</h3>
+            <p style="color: #64748b; font-size: 13px; margin-top: 5px;">PLEASE WAIT 5 SECONDS</p>
+        </div>
+
+        <!-- ផ្ទាំងបង្ហាញ QR Code -->
+        <div id="qr-screen">
+            <h3 style="font-family: 'Poppins', sans-serif; color: #1e293b; margin-bottom: 5px;">SCAN QR TO PAY</h3>
+            <p style="color: #16a34a; font-size: 13px; font-weight: bold;" id="selectedSummary"></p>
+            <img src="https://cdn.phototourl.com/free/2026-09-19-b8e5aae0-38ec-4cc7-b384-d915f08a976b.png" alt="QR Code" class="qr-img">
+            <button class="topup-btn" onclick="goHome()" style="background: #ef4444;">DONE / BACK HOME</button>
         </div>
 
         <div class="footer">
@@ -304,11 +428,86 @@
     </div>
 
     <script>
+        // បញ្ជីពេជ្យ Free Fire ពី 100 ដល់ 2000 ពេជ្យ
+        // គណនាតម្លៃផ្អែកលើ 100 ពេជ្យ = 0.96$
+        const packages = [
+            { diamonds: 100, price: 0.96 },
+            { diamonds: 210, price: 2.00 },
+            { diamonds: 310, price: 2.95 },
+            { diamonds: 520, price: 4.85 },
+            { diamonds: 1060, price: 9.70 },
+            { diamonds: 2180, price: 19.50 }
+        ];
+
+        let selectedPkg = null;
+
         window.onload = function() {
             if (localStorage.getItem("admin_logged") === "true") {
                 showStore();
             }
+            renderPackages();
         };
+
+        function renderPackages() {
+            const container = document.getElementById("packagesContainer");
+            container.innerHTML = "";
+            packages.forEach((pkg, index) => {
+                container.innerHTML += `
+                    <div class="pkg-card" onclick="selectPackage(${index})">
+                        <div class="pkg-diamonds">${pkg.diamonds} DIAMONDS</div>
+                        <div class="pkg-price">${pkg.price.toFixed(2)}$</div>
+                    </div>
+                `;
+            });
+        }
+
+        function selectPackage(index) {
+            const cards = document.querySelectorAll(".pkg-card");
+            cards.forEach(c => c.classList.remove("selected"));
+            cards[index].classList.add("selected");
+            selectedPkg = packages[index];
+            document.getElementById("topupNowBtn").style.display = "block";
+        }
+
+        function openFreeFire() {
+            document.getElementById("home-view").style.display = "none";
+            document.getElementById("ff-page").style.display = "block";
+        }
+
+        function goHome() {
+            document.getElementById("ff-page").style.display = "none";
+            document.getElementById("loading-screen").style.display = "none";
+            document.getElementById("qr-screen").style.display = "none";
+            document.getElementById("home-view").style.display = "block";
+            document.getElementById("topupNowBtn").style.display = "none";
+            document.getElementById("playerId").value = "";
+            selectedPkg = null;
+            const cards = document.querySelectorAll(".pkg-card");
+            cards.forEach(c => c.classList.remove("selected"));
+        }
+
+        function startTopup() {
+            const playerId = document.getElementById("playerId").value.trim();
+            if (!playerId) {
+                alert("PLEASE ENTER YOUR PLAYER ID!");
+                return;
+            }
+            if (!selectedPkg) {
+                alert("PLEASE SELECT A PACKAGE!");
+                return;
+            }
+
+            // លាក់ទំព័រ Free Fire មកបង្ហាញ Loading
+            document.getElementById("ff-page").style.display = "none";
+            document.getElementById("loading-screen").style.display = "block";
+
+            // រង់ចាំ 5 វិនាទី (5000ms) រួចបង្ហាញ QR Code
+            setTimeout(function() {
+                document.getElementById("loading-screen").style.display = "none";
+                document.getElementById("qr-screen").style.display = "block";
+                document.getElementById("selectedSummary").innerText = `ID: ${playerId} | ${selectedPkg.diamonds} Diamonds (${selectedPkg.price.toFixed(2)}$)`;
+            }, 5000);
+        }
 
         function checkAdmin() {
             var code = document.getElementById("adminCode").value;
