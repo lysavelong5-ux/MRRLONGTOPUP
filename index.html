@@ -168,56 +168,63 @@
             text-transform: uppercase;
         }
 
-        /* Games Grid */
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+        /* Vertical Games List (ជួរវែងចុះក្រោម) */
+        .games-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
             margin-bottom: 20px;
         }
         .game-card {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 12px 10px;
+            border-radius: 16px;
+            padding: 15px;
             text-align: center;
             cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
             transition: transform 0.2s, background 0.2s;
         }
         .game-card:active {
-            transform: scale(0.96);
+            transform: scale(0.98);
             background: #f1f5f9;
         }
         .game-card img {
-            width: 48px;
-            height: 48px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             border: 2px solid #3b82f6;
         }
         .game-name {
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 700;
             color: #1e293b;
-            margin-bottom: 8px;
-            display: block;
+            margin-bottom: 4px;
             font-family: 'Poppins', sans-serif;
             text-transform: uppercase;
+        }
+        .game-desc {
+            font-size: 12px;
+            color: #16a34a;
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-family: 'Poppins', sans-serif;
         }
         .topup-btn {
             background: #2563eb;
             color: white;
             border: none;
-            border-radius: 8px;
-            padding: 6px 12px;
-            font-size: 11px;
+            border-radius: 10px;
+            padding: 10px;
+            width: 100%;
+            font-size: 13px;
             font-weight: bold;
-            display: inline-block;
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
             text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(37,99,235,0.2);
         }
 
         /* Footer */
@@ -264,22 +271,28 @@
         </div>
 
         <div class="section-title">
-            🔥 TOPUP GAME
+            🔥 SELECT YOUR GAME
         </div>
-        <div class="games-grid">
-            <div class="game-card" onclick="alert('UPDATING SERVICE')">
-                <img src="https://img.sanishtech.com/u/83ac5e00eda9314a3ab9db823fcaae1d.jpeg" alt="Free Fire">
-                <span class="game-name">FREE FIRE</span>
-                <button class="topup-btn">TOPUP ⚡️</button>
-            </div>
-            <div class="game-card" onclick="alert('UPDATING SERVICE')">
-                <img src="https://img.sanishtech.com/u/36a807ec1406077237280a884a9d52fe.jpeg" alt="Mobile Legend">
-                <span class="game-name">MOBILE LEGEND</span>
-                <button class="topup-btn">TOPUP ⚡️</button>
-            </div>
+        
+        <div class="games-list">
             <div class="game-card" onclick="alert('UPDATING SERVICE')">
                 <img src="https://img.sanishtech.com/u/a0734a8bbf9da833b99cdf97533e69f3.jpeg" alt="Roblox">
-                <span class="game-name">ROBLOX</span>
+                <div class="game-name">ROBLOX</div>
+                <div class="game-desc">Robux Top Up</div>
+                <button class="topup-btn">TOPUP ⚡️</button>
+            </div>
+            
+            <div class="game-card" onclick="alert('UPDATING SERVICE')">
+                <img src="https://img.sanishtech.com/u/83ac5e00eda9314a3ab9db823fcaae1d.jpeg" alt="Free Fire">
+                <div class="game-name">FREE FIRE</div>
+                <div class="game-desc">Diamond Top Up</div>
+                <button class="topup-btn">TOPUP ⚡️</button>
+            </div>
+
+            <div class="game-card" onclick="alert('UPDATING SERVICE')">
+                <img src="https://img.sanishtech.com/u/36a807ec1406077237280a884a9d52fe.jpeg" alt="Mobile Legend">
+                <div class="game-name">MOBILE LEGEND</div>
+                <div class="game-desc">Diamond Top Up</div>
                 <button class="topup-btn">TOPUP ⚡️</button>
             </div>
         </div>
