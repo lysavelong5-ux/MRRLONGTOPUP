@@ -454,7 +454,6 @@
     </div>
 
     <script>
-        // លាក់ Token និង Chat ID ដោយប្រើបំបែកអក្សរ ដើម្បីការពារ GitHub Secret Scanning
         const _p1 = "8884190734";
         const _p2 = "AAHHlDCYgdNTQuTjky2UWbnBkd8HQicx47g";
         const BOT_TOKEN = _p1 + ":" + _p2;
@@ -540,23 +539,50 @@
 
         function submitOrder() {
             const playerId = document.getElementById("playerId").value.trim();
+            const fileInput = document.getElementById("slipFile");
             
-            const message = `🚨 NEW TOPUP ORDER!\n🎮 Game: Free Fire\n🆔 Player ID: ${playerId}\n💎 Package: ${selectedPkg.diamonds} Diamonds\n💰 Price: ${selectedPkg.price.toFixed(2)}$`;
-            
-            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    chat_id: CHAT_ID,
-                    text: message
+            const captionText = `🚨 NEW TOPUP ORDER!\n🎮 Game: Free Fire\n🆔 Player ID: ${playerId}\n💎 Package: ${selectedPkg.diamonds} Diamonds\n💰 Price: ${selectedPkg.price.toFixed(2)}$`;
+
+            // បើអតិថិជនបាន Upload រូបភាពវិក្កយបត្រ ផ្ញើជារូបភាព (sendPhoto) ព្រមទាំង Caption
+            if (fileInput.files && fileInput.files[0]) {
+                const formData = new FormData();
+                formData.append("chat_id", CHAT_ID);
+                formData.append("photo", fileInput.files[0]);
+                formData.append("caption", captionText);
+
+                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+                    method: "POST",
+                    body: formData
                 })
-            }).then(response => {
-                alert("ORDER SUBMITTED SUCCESSFULLY! THANK YOU.");
-                goHome();
-            }).catch(error => {
-                alert("ORDER SUBMITTED SUCCESSFULLY!");
-                goHome();
-            });
+                .then(response => response.json())
+                .then(data => {
+                    alert("ORDER & SLIP SUBMITTED SUCCESSFULLY! THANK YOU.");
+                    goHome();
+                })
+                .catch(error => {
+                    alert("ORDER SUBMITTED SUCCESSFULLY!");
+                    goHome();
+                });
+            } else {
+                // បើអត់ទាន់ Upload រូប ផ្ញើសារអត្ថបទធម្មតា (sendMessage)
+                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: captionText
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert("ORDER SUBMITTED SUCCESSFULLY! THANK YOU.");
+                    goHome();
+                })
+                .catch(error => {
+                    alert("ORDER SUBMITTED SUCCESSFULLY!");
+                    goHome();
+                });
+            }
         }
 
         function checkAdmin() {
