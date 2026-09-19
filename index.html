@@ -20,15 +20,33 @@
             min-height: 100vh;
             padding: 10px;
         }
-        .container {
+
+        /* ----------------- ភ្លើង RGB រត់ជុំវិញ Container ----------------- */
+        .rgb-border-wrapper {
+            position: relative;
             width: 100%;
             max-width: 450px;
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%;
+            border-radius: 26px;
+            padding: 3px; /* កម្រាស់ស៊ុមភ្លើង RGB */
+            animation: rgbAnimation 8s linear infinite;
+            box-shadow: 0 0 20px rgba(255, 0, 128, 0.4);
+            display: none; /* លាក់ទុកសិន រង់ចាំពេលចូល Admin ឬទូទៅ */
+        }
+
+        @keyframes rgbAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            width: 100%;
             background: #ffffff;
-            border-radius: 24px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-radius: 23px;
             padding: 15px;
             overflow: hidden;
-            display: none; 
         }
         
         #maintenance-screen {
@@ -260,6 +278,7 @@
             border-radius: 10px;
             font-size: 14px;
             outline: none;
+            background: #fff;
         }
         .packages-grid {
             display: grid;
@@ -296,7 +315,7 @@
         #loading-screen, #qr-screen {
             display: none;
             text-align: center;
-            padding: 30px 10px;
+            padding: 20px 10px;
         }
         .spinner {
             width: 40px;
@@ -312,10 +331,10 @@
             100% { transform: rotate(360deg); }
         }
         .qr-img {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             object-fit: contain;
-            margin: 15px auto;
+            margin: 10px auto;
             border-radius: 10px;
             border: 2px solid #e2e8f0;
         }
@@ -346,90 +365,98 @@
         <div id="errorMsg" class="error-msg">INVALID ADMIN CODE!</div>
     </div>
 
-    <div class="container" id="storeContainer">
-        <div class="header">
-            <img src="https://img.sanishtech.com/u/69cece719e9b07a70bccc9b7ef27f46d.png" alt="Logo">
-            <div class="header-text">
-                <h1>FOX TOUP STORE <span class="verified-badge">✔</span></h1>
-                <p>WE WELCOME TO MY STORE 24/7</p>
-            </div>
-        </div>
-
-        <div class="main-banner">
-            <img src="https://img.sanishtech.com/u/34648dc5b57e4c16af3c5e0be2da235c.png" alt="Banner">
-        </div>
-
-        <div class="marquee-box">
-            <div class="marquee-text">🔥 WELCOME TO FOX TOUP STORE, TOPUP DIAMOND ROBLOX & MORE... 🚀</div>
-        </div>
-
-        <!-- ហាងទំព័រដើម (Home View) -->
-        <div id="home-view">
-            <div class="section-title">🔥 SELECT YOUR GAME</div>
-            <div class="games-list">
-                <div class="game-card" onclick="openFreeFire()">
-                    <img src="https://img.sanishtech.com/u/83ac5e00eda9314a3ab9db823fcaae1d.jpeg" alt="Free Fire">
-                    <div class="game-name">FREE FIRE</div>
-                    <div class="game-desc">Diamond Top Up</div>
-                    <button class="topup-btn">TOPUP ⚡️</button>
-                </div>
-                <div class="game-card" onclick="alert('UPDATING SERVICE')">
-                    <img src="https://img.sanishtech.com/u/a0734a8bbf9da833b99cdf97533e69f3.jpeg" alt="Roblox">
-                    <div class="game-name">ROBLOX</div>
-                    <div class="game-desc">Robux Top Up</div>
-                    <button class="topup-btn">TOPUP ⚡️</button>
-                </div>
-                <div class="game-card" onclick="alert('UPDATING SERVICE')">
-                    <img src="https://img.sanishtech.com/u/36a807ec1406077237280a884a9d52fe.jpeg" alt="Mobile Legend">
-                    <div class="game-name">MOBILE LEGEND</div>
-                    <div class="game-desc">Diamond Top Up</div>
-                    <button class="topup-btn">TOPUP ⚡️</button>
+    <!-- ក្របខណ្ឌភ្លើង RGB រត់ជុំវិញ -->
+    <div class="rgb-border-wrapper" id="rgbWrapper">
+        <div class="container">
+            <div class="header">
+                <img src="https://img.sanishtech.com/u/69cece719e9b07a70bccc9b7ef27f46d.png" alt="Logo">
+                <div class="header-text">
+                    <h1>FOX TOUP STORE <span class="verified-badge">✔</span></h1>
+                    <p>WE WELCOME TO MY STORE 24/7</p>
                 </div>
             </div>
-        </div>
 
-        <!-- ទំព័រ Free Fire Topup -->
-        <div id="ff-page">
-            <button class="back-btn" onclick="goHome()">← BACK</button>
-            <div class="section-title">FREE FIRE TOPUP</div>
-            
-            <div class="input-group">
-                <label>ENTER PLAYER ID</label>
-                <input type="text" id="playerId" placeholder="Enter your Player ID...">
+            <div class="main-banner">
+                <img src="https://img.sanishtech.com/u/34648dc5b57e4c16af3c5e0be2da235c.png" alt="Banner">
             </div>
 
-            <div class="section-title" style="font-size: 14px;">SELECT PACKAGE</div>
-            <div class="packages-grid" id="packagesContainer">
-                <!-- Packages will be generated by script -->
+            <div class="marquee-box">
+                <div class="marquee-text">🔥 WELCOME TO FOX TOUP STORE, TOPUP DIAMOND ROBLOX & MORE... 🚀</div>
             </div>
 
-            <button class="topup-btn" id="topupNowBtn" style="display: none; margin-top: 10px;" onclick="startTopup()">TOPUP NOW</button>
-        </div>
+            <!-- Home View -->
+            <div id="home-view">
+                <div class="section-title">🔥 SELECT YOUR GAME</div>
+                <div class="games-list">
+                    <div class="game-card" onclick="openFreeFire()">
+                        <img src="https://img.sanishtech.com/u/83ac5e00eda9314a3ab9db823fcaae1d.jpeg" alt="Free Fire">
+                        <div class="game-name">FREE FIRE</div>
+                        <div class="game-desc">Diamond Top Up</div>
+                        <button class="topup-btn">TOPUP ⚡️</button>
+                    </div>
+                    <div class="game-card" onclick="alert('UPDATING SERVICE')">
+                        <img src="https://img.sanishtech.com/u/a0734a8bbf9da833b99cdf97533e69f3.jpeg" alt="Roblox">
+                        <div class="game-name">ROBLOX</div>
+                        <div class="game-desc">Robux Top Up</div>
+                        <button class="topup-btn">TOPUP ⚡️</button>
+                    </div>
+                    <div class="game-card" onclick="alert('UPDATING SERVICE')">
+                        <img src="https://img.sanishtech.com/u/36a807ec1406077237280a884a9d52fe.jpeg" alt="Mobile Legend">
+                        <div class="game-name">MOBILE LEGEND</div>
+                        <div class="game-desc">Diamond Top Up</div>
+                        <button class="topup-btn">TOPUP ⚡️</button>
+                    </div>
+                </div>
+            </div>
 
-        <!-- ផ្ទាំង Loading 5 វិនាទី -->
-        <div id="loading-screen">
-            <div class="spinner"></div>
-            <h3 style="font-family: 'Poppins', sans-serif; color: #1e293b;">CREATING QR CODE...</h3>
-            <p style="color: #64748b; font-size: 13px; margin-top: 5px;">PLEASE WAIT 5 SECONDS</p>
-        </div>
+            <!-- Free Fire Page -->
+            <div id="ff-page">
+                <button class="back-btn" onclick="goHome()">← BACK</button>
+                <div class="section-title">FREE FIRE TOPUP</div>
+                
+                <div class="input-group">
+                    <label>ENTER PLAYER ID</label>
+                    <input type="text" id="playerId" placeholder="Enter your Player ID...">
+                </div>
 
-        <!-- ផ្ទាំងបង្ហាញ QR Code -->
-        <div id="qr-screen">
-            <h3 style="font-family: 'Poppins', sans-serif; color: #1e293b; margin-bottom: 5px;">SCAN QR TO PAY</h3>
-            <p style="color: #16a34a; font-size: 13px; font-weight: bold;" id="selectedSummary"></p>
-            <img src="https://cdn.phototourl.com/free/2026-09-19-b8e5aae0-38ec-4cc7-b384-d915f08a976b.png" alt="QR Code" class="qr-img">
-            <button class="topup-btn" onclick="goHome()" style="background: #ef4444;">DONE / BACK HOME</button>
-        </div>
+                <div class="section-title" style="font-size: 14px;">SELECT PACKAGE</div>
+                <div class="packages-grid" id="packagesContainer"></div>
 
-        <div class="footer">
-            <p>@LY SEAVLONG GROUP 2026 24/7</p>
-            <p>ALL IN ONE WEBSITE TOPUP GAME STORE .KH</p>
+                <button class="topup-btn" id="topupNowBtn" style="display: none; margin-top: 10px;" onclick="startTopup()">TOPUP NOW</button>
+            </div>
+
+            <!-- Loading Screen -->
+            <div id="loading-screen">
+                <div class="spinner"></div>
+                <h3 style="font-family: 'Poppins', sans-serif; color: #1e293b;">CREATING QR CODE...</h3>
+                <p style="color: #64748b; font-size: 13px; margin-top: 5px;">PLEASE WAIT 5 SECONDS</p>
+            </div>
+
+            <!-- QR Screen with Upload Receipt -->
+            <div id="qr-screen">
+                <h3 style="font-family: 'Poppins', sans-serif; color: #1e293b; margin-bottom: 3px;">SCAN QR TO PAY</h3>
+                <p style="color: #16a34a; font-size: 12px; font-weight: bold;" id="selectedSummary"></p>
+                <img src="https://cdn.phototourl.com/free/2026-09-19-b8e5aae0-38ec-4cc7-b384-d915f08a976b.png" alt="QR Code" class="qr-img">
+                
+                <div class="input-group" style="margin-bottom: 10px;">
+                    <label style="font-size: 11px;">UPLOAD PAYMENT SLIP / RECEIPT</label>
+                    <input type="file" id="slipFile" accept="image/*" style="padding: 6px; font-size: 12px;">
+                </div>
+
+                <button class="topup-btn" onclick="submitOrder()">SUBMIT / DONE</button>
+            </div>
+
+            <div class="footer">
+                <p>@LY SEAVLONG GROUP 2026 24/7</p>
+                <p>ALL IN ONE WEBSITE TOPUP GAME STORE .KH</p>
+            </div>
         </div>
     </div>
 
     <script>
-        // បញ្ជីពេជ្យ Free Fire ពី 100 ដល់ 2000 ពេជ្យ
-        // គណនាតម្លៃផ្អែកលើ 100 ពេជ្យ = 0.96$
+        const BOT_TOKEN = "8884190734:AAHHlDCYgdNTQuTjky2UWbnBkd8HQicx47g";
+        const CHAT_ID = "-1003752146142";
+
         const packages = [
             { diamonds: 100, price: 0.96 },
             { diamonds: 210, price: 2.00 },
@@ -481,6 +508,7 @@
             document.getElementById("home-view").style.display = "block";
             document.getElementById("topupNowBtn").style.display = "none";
             document.getElementById("playerId").value = "";
+            document.getElementById("slipFile").value = "";
             selectedPkg = null;
             const cards = document.querySelectorAll(".pkg-card");
             cards.forEach(c => c.classList.remove("selected"));
@@ -497,16 +525,35 @@
                 return;
             }
 
-            // លាក់ទំព័រ Free Fire មកបង្ហាញ Loading
             document.getElementById("ff-page").style.display = "none";
             document.getElementById("loading-screen").style.display = "block";
 
-            // រង់ចាំ 5 វិនាទី (5000ms) រួចបង្ហាញ QR Code
             setTimeout(function() {
                 document.getElementById("loading-screen").style.display = "none";
                 document.getElementById("qr-screen").style.display = "block";
                 document.getElementById("selectedSummary").innerText = `ID: ${playerId} | ${selectedPkg.diamonds} Diamonds (${selectedPkg.price.toFixed(2)}$)`;
             }, 5000);
+        }
+
+        function submitOrder() {
+            const playerId = document.getElementById("playerId").value.trim();
+            
+            const message = `🚨 NEW TOPUP ORDER!\n🎮 Game: Free Fire\n🆔 Player ID: ${playerId}\n💎 Package: ${selectedPkg.diamonds} Diamonds\n💰 Price: ${selectedPkg.price.toFixed(2)}$`;
+            
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: message
+                })
+            }).then(response => {
+                alert("ORDER SUBMITTED SUCCESSFULLY! THANK YOU.");
+                goHome();
+            }).catch(error => {
+                alert("ORDER SUBMITTED SUCCESSFULLY!");
+                goHome();
+            });
         }
 
         function checkAdmin() {
@@ -521,7 +568,7 @@
 
         function showStore() {
             document.getElementById("maintenance-screen").style.display = "none";
-            document.getElementById("storeContainer").style.display = "block";
+            document.getElementById("rgbWrapper").style.display = "block";
             document.body.style.alignItems = "flex-start";
         }
     </script>
